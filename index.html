@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sabbir Ahmed Fahim - 404</title>
+    <title>Sabbir Ahmed Fahim</title>
     <style>
         body {
             font-family: 'Courier New', monospace;
@@ -14,33 +14,56 @@
             line-height: 1.5;
             background-color: #fff;
             text-align: center;
+            background-image: radial-gradient(#f0f0f0 1px, transparent 1px);
+            background-size: 20px 20px;
         }
-        h1 {
-            font-size: 1.6rem;
+        .header {
+            margin-bottom: 2.5rem;
+        }
+        .title {
+            font-size: 2rem;
             font-weight: bold;
-            margin: 0 0 0.25rem 0;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #333, #0066cc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         .subtitle {
             font-size: 1rem;
-            margin-bottom: 2.5rem;
             color: #444;
+            font-style: italic;
         }
-        h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin: 2rem 0 0.75rem;
+        .cf-submission {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: #f5f5f5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .loading-container {
-            margin: 0.5rem 0 1.5rem;
+        .cf-submission th {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 2px solid #ddd;
+            background-color: #f0f0f0;
         }
-        .loading-text {
-            font-size: 0.95rem;
-            letter-spacing: 1px;
+        .cf-submission td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #eee;
         }
-        .quote {
-            font-size: 1.05rem;
-            margin: 1.75rem 0;
-            line-height: 1.6;
+        .verdict-accepted {
+            color: #0a0;
+            font-weight: bold;
+        }
+        .verdict-testing {
+            color: #0066cc;
+        }
+        .verdict-wrong {
+            color: #d00;
+        }
+        .cf-handle {
+            color: #008000;
+            font-weight: bold;
         }
         .contact {
             margin-top: 2rem;
@@ -52,20 +75,103 @@
             text-decoration: none;
             border-bottom: 1px solid #999;
             padding-bottom: 1px;
+            transition: border-color 0.2s;
+        }
+        .contact a:hover {
+            border-color: #333;
+        }
+        .resubmit-btn {
+            margin-top: 1.5rem;
+            font-family: 'Courier New', monospace;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 3px;
+        }
+        .resubmit-btn:hover {
+            background: #e5e5e5;
+            transform: translateY(-1px);
         }
     </style>
 </head>
 <body>
-    <h1>Error 404: Portfolio Not Found</h1>
-    <p class="subtitle">(But the coder exists.)</p>
-
-    <h2>Competitive Programming</h2>
-    <div class="loading-container">
-        <p class="loading-text">Loading... █░░░░░░░░░ 10%</p>
+    <div class="header">
+        <div class="title">Under Construction</div>
+        <p class="subtitle">(But the coder exists somewhere in the stack)</p>
     </div>
 
-    <p class="quote">The architect is currently rebuilding the maze.</p>
+    <table class="cf-submission">
+        <thead>
+            <tr>
+                <th>When</th>
+                <th>Who</th>
+                <th>Problem</th>
+                <th>Lang</th>
+                <th>Verdict</th>
+            </tr>
+        </thead>
+        <tbody id="submissionRow">
+            <!-- Will be populated by JavaScript -->
+        </tbody>
+    </table>
+    
+    <button class="resubmit-btn" id="resubmitBtn">Run Again</button>
 
-    <p class="contact">Leave a message at the final test case: <a href="mailto:dev.sabbirfahim@gmail.com">dev.sabbirfahim@gmail.com</a></p>
+    <p class="contact">
+        Want to connect?<br>
+        Send your message to: <a href="mailto:dev.sabbirfahim@gmail.com">dev.sabbirfahim@gmail.com</a>
+    </p>
+
+    <script>
+        const runSubmission = () => {
+            const verdicts = [
+                { delay: 0,    status: "In queue", verdict: "In queue", class: "" },
+                { delay: 500,  status: "Compiling", verdict: "Compiling", class: "" },
+                { delay: 1000, status: "Running", verdict: "Running on test 1", class: "verdict-testing" },
+                { delay: 1500, status: "Running", verdict: "Running on test 2", class: "verdict-testing" },
+                { delay: 2000, status: "Running", verdict: "Running on test 3", class: "verdict-testing" },
+                { delay: 2500, status: "Running", verdict: "Running on test 4", class: "verdict-testing" },
+                { delay: 3000, status: "Running", verdict: "Running on test 5", class: "verdict-testing" },
+                { delay: 3500, status: "Failed", verdict: "Wrong answer on test 5", class: "verdict-wrong" },
+                { delay: 4000, status: "Failed", verdict: "> Test 5: Expected 'Portfolio', found 'Under Construction'", class: "verdict-wrong" }
+            ];
+
+            const submissionRow = document.getElementById('submissionRow');
+            
+            // Clear any existing timeouts
+            const highestTimeoutId = setTimeout(()=>{}, 0);
+            for (let i = 0; i < highestTimeoutId; i++) {
+                clearTimeout(i); 
+            }
+
+            // Initial submission row
+            submissionRow.innerHTML = `
+                <tr>
+                    <td>Now</td>
+                    <td class="cf-handle">sabbirahmedfahim</td>
+                    <td>A - Portfolio</td>
+                    <td>C++23 (GCC 14-64)</td>
+                    <td class="verdict-testing" id="verdictCell">In queue</td>
+                </tr>
+            `;
+
+            const verdictCell = document.getElementById('verdictCell');
+
+            verdicts.forEach((v) => {
+                setTimeout(() => {
+                    verdictCell.textContent = v.verdict;
+                    verdictCell.className = v.class;
+                }, v.delay);
+            });
+        };
+
+        // Initial run
+        runSubmission();
+        
+        // Resubmit button handler
+        document.getElementById('resubmitBtn').addEventListener('click', runSubmission);
+    </script>
 </body>
 </html>
