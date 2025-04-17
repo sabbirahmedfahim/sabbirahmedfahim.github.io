@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sabbir Ahmed Fahim</title>
     <style>
         body {
             font-family: 'Courier New', monospace;
             max-width: 38rem;
-            margin: 4rem auto;
-            padding: 0 1.5rem;
+            margin: 2rem auto;
+            padding: 0 1rem;
             color: #222;
             line-height: 1.5;
             background-color: #fff;
@@ -18,10 +18,10 @@
             background-size: 20px 20px;
         }
         .header {
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
         .title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
             background: linear-gradient(90deg, #333, #0066cc);
@@ -30,26 +30,30 @@
             color: transparent;
         }
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #444;
             font-style: italic;
         }
         .cf-submission {
             width: 100%;
             border-collapse: collapse;
-            margin: 2rem 0;
+            margin: 1rem 0;
             background: #f5f5f5;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow-x: auto;
+            display: block;
         }
         .cf-submission th {
             text-align: left;
-            padding: 0.75rem;
+            padding: 0.5rem;
             border-bottom: 2px solid #ddd;
             background-color: #f0f0f0;
+            font-size: 0.8rem;
         }
         .cf-submission td {
-            padding: 0.75rem;
+            padding: 0.5rem;
             border-bottom: 1px solid #eee;
+            font-size: 0.8rem;
         }
         .verdict-accepted {
             color: #0a0;
@@ -66,11 +70,10 @@
             font-weight: bold;
         }
         .contact {
-            margin-top: 2rem;
-            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
         }
         .contact a {
-            font-size: 0.9rem;
             color: inherit;
             text-decoration: none;
             border-bottom: 1px solid #999;
@@ -81,18 +84,33 @@
             border-color: #333;
         }
         .resubmit-btn {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             font-family: 'Courier New', monospace;
             background: #f5f5f5;
             border: 1px solid #ddd;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             cursor: pointer;
             transition: all 0.2s;
             border-radius: 3px;
+            font-size: 0.8rem;
         }
         .resubmit-btn:hover {
             background: #e5e5e5;
             transform: translateY(-1px);
+        }
+        @media (max-width: 480px) {
+            body {
+                margin: 1rem auto;
+                padding: 0 0.8rem;
+            }
+            .title {
+                font-size: 1.5rem;
+            }
+            .cf-submission th, 
+            .cf-submission td {
+                padding: 0.4rem 0.3rem;
+                white-space: nowrap;
+            }
         }
     </style>
 </head>
