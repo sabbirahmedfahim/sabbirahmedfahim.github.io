@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sabbir Ahmed Fahim</title>
     <style>
         body {
@@ -34,26 +34,29 @@
             color: #444;
             font-style: italic;
         }
+        .cf-submission-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
         .cf-submission {
             width: 100%;
+            min-width: 320px;
             border-collapse: collapse;
-            margin: 1rem 0;
             background: #f5f5f5;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            overflow-x: auto;
-            display: block;
+            font-size: 0.8rem;
         }
         .cf-submission th {
             text-align: left;
             padding: 0.5rem;
             border-bottom: 2px solid #ddd;
             background-color: #f0f0f0;
-            font-size: 0.8rem;
         }
         .cf-submission td {
             padding: 0.5rem;
             border-bottom: 1px solid #eee;
-            font-size: 0.8rem;
+            white-space: nowrap;
         }
         .verdict-accepted {
             color: #0a0;
@@ -98,20 +101,6 @@
             background: #e5e5e5;
             transform: translateY(-1px);
         }
-        @media (max-width: 480px) {
-            body {
-                margin: 1rem auto;
-                padding: 0 0.8rem;
-            }
-            .title {
-                font-size: 1.5rem;
-            }
-            .cf-submission th, 
-            .cf-submission td {
-                padding: 0.4rem 0.3rem;
-                white-space: nowrap;
-            }
-        }
     </style>
 </head>
 <body>
@@ -120,20 +109,21 @@
         <p class="subtitle">(But the coder exists somewhere in the stack)</p>
     </div>
 
-    <table class="cf-submission">
-        <thead>
-            <tr>
-                <th>When</th>
-                <th>Who</th>
-                <th>Problem</th>
-                <th>Lang</th>
-                <th>Verdict</th>
-            </tr>
-        </thead>
-        <tbody id="submissionRow">
-            <!-- Will be populated by JavaScript -->
-        </tbody>
-    </table>
+    <div class="cf-submission-container">
+        <table class="cf-submission">
+            <thead>
+                <tr>
+                    <th>When</th>
+                    <th>Who</th>
+                    <th>Problem</th>
+                    <th>Verdict</th>
+                </tr>
+            </thead>
+            <tbody id="submissionRow">
+                <!-- Will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
     
     <button class="resubmit-btn" id="resubmitBtn">Run Again</button>
 
@@ -147,13 +137,13 @@
             const verdicts = [
                 { delay: 0,    status: "In queue", verdict: "In queue", class: "" },
                 { delay: 500,  status: "Compiling", verdict: "Compiling", class: "" },
-                { delay: 1000, status: "Running", verdict: "Running on test 1", class: "verdict-testing" },
-                { delay: 1500, status: "Running", verdict: "Running on test 2", class: "verdict-testing" },
-                { delay: 2000, status: "Running", verdict: "Running on test 3", class: "verdict-testing" },
-                { delay: 2500, status: "Running", verdict: "Running on test 4", class: "verdict-testing" },
-                { delay: 3000, status: "Running", verdict: "Running on test 5", class: "verdict-testing" },
-                { delay: 3500, status: "Failed", verdict: "Wrong answer on test 5", class: "verdict-wrong" },
-                { delay: 4000, status: "Failed", verdict: "> Test 5: Expected 'Portfolio', found 'Under Construction'", class: "verdict-wrong" }
+                { delay: 1000, status: "Running", verdict: "Running test 1", class: "verdict-testing" },
+                { delay: 1500, status: "Running", verdict: "Running test 2", class: "verdict-testing" },
+                { delay: 2000, status: "Running", verdict: "Running test 3", class: "verdict-testing" },
+                { delay: 2500, status: "Running", verdict: "Running test 4", class: "verdict-testing" },
+                { delay: 3000, status: "Running", verdict: "Running test 5", class: "verdict-testing" },
+                { delay: 3500, status: "Failed", verdict: "Wrong answer", class: "verdict-wrong" },
+                { delay: 4000, status: "Failed", verdict: "Expected Portfolio", class: "verdict-wrong" }
             ];
 
             const submissionRow = document.getElementById('submissionRow');
@@ -169,8 +159,7 @@
                 <tr>
                     <td>Now</td>
                     <td class="cf-handle">sabbirahmedfahim</td>
-                    <td>A - Portfolio</td>
-                    <td>C++23 (GCC 14-64)</td>
+                    <td>Portfolio</td>
                     <td class="verdict-testing" id="verdictCell">In queue</td>
                 </tr>
             `;
