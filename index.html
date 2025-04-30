@@ -65,9 +65,8 @@
         header {
             background: var(--dark);
             color: white;
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
-            margin-bottom: 2.5rem;
             position: relative;
             overflow: hidden;
             transition: var(--transition);
@@ -85,16 +84,16 @@
         
         h1 {
             margin: 0;
-            font-size: 2.75rem;
+            font-size: 2.25rem;
             font-weight: 800;
             letter-spacing: -0.025em;
         }
         
         h2 {
             color: var(--heading);
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-top: 3rem;
+            margin-top: 0;
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
@@ -114,43 +113,52 @@
         
         h3 {
             color: var(--heading);
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
             transition: var(--transition);
         }
         
+        .main-content {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+        }
+        
         .section {
             background-color: var(--card-bg);
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
             transition: var(--transition);
+            flex: 1;
+            overflow-y: auto;
+            max-height: 80vh;
         }
         
         .skills {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
         }
         
         .skill-category {
             background-color: var(--light);
-            padding: 1.5rem;
+            padding: 1rem;
             border-radius: var(--border-radius);
             transition: var(--transition);
         }
         
         ul {
-            padding-left: 1.5rem;
-            margin-top: 0.75rem;
+            padding-left: 1.25rem;
+            margin-top: 0.5rem;
         }
         
         li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             color: var(--text);
             position: relative;
+            font-size: 0.9rem;
         }
         
         li::before {
@@ -163,8 +171,8 @@
         }
         
         .education-item, .activity-item {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             transition: var(--transition);
         }
@@ -195,25 +203,14 @@
             flex-wrap: wrap;
             align-items: center;
             gap: 0.5rem;
-        }
-        
-        .sub-section {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-        
-        [data-theme="dark"] .sub-section {
-            border-top-color: rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
         }
         
         footer {
             text-align: center;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background-color: var(--dark);
             color: white;
-            margin-top: 4rem;
             transition: var(--transition);
         }
         
@@ -236,6 +233,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.25rem;
+            font-size: 0.9rem;
         }
         
         .external-link:hover {
@@ -247,8 +245,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
         .contact-links a {
@@ -260,6 +258,7 @@
             border-radius: 50px;
             background-color: rgba(255, 255, 255, 0.1);
             transition: var(--transition);
+            font-size: 0.9rem;
         }
 
         .contact-links a:hover {
@@ -281,9 +280,9 @@
             cursor: pointer;
             z-index: 100;
             transition: var(--transition);
-            font-size: 1.2rem;
-            width: 48px;
-            height: 48px;
+            font-size: 1.1rem;
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -297,11 +296,11 @@
 
         .badge {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
+            padding: 0.2rem 0.6rem;
             background-color: var(--primary);
             color: white;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             margin-left: 0.5rem;
         }
@@ -311,6 +310,7 @@
             align-items: center;
             gap: 0.25rem;
             color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
         .date::before {
@@ -325,35 +325,42 @@
             color: var(--heading);
         }
 
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section {
+                max-height: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 0 15px;
             }
             
             header {
-                padding: 2rem 0;
+                padding: 1.5rem 0;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
             
             .section {
-                padding: 1.5rem;
-            }
-            
-            .skills {
-                grid-template-columns: 1fr;
+                padding: 1.25rem;
             }
             
             .theme-toggle {
-                width: 42px;
-                height: 42px;
-                font-size: 1.1rem;
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
                 top: 15px;
                 right: 15px;
             }
@@ -378,10 +385,6 @@
         .section {
             animation: fadeIn 0.6s ease-out forwards;
         }
-
-        .section:nth-child(2) { animation-delay: 0.1s; }
-        .section:nth-child(3) { animation-delay: 0.2s; }
-        .section:nth-child(4) { animation-delay: 0.3s; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -396,119 +399,121 @@
     </header>
     
     <div class="container">
-        <section class="section">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>
-                    <i class="fas fa-graduation-cap"></i>
-                    B.Sc. in Computer Science & Engineering
-                    <span class="badge">Current</span>
-                </h3>
-                <p>
-                    <a href="https://www.lus.ac.bd/" class="external-link" target="_blank">
-                        <i class="fas fa-university"></i> Leading University
-                    </a>
-                    <span class="date">
-                        <i class="far fa-calendar-alt"></i> Expected Graduation: March 2027
-                    </span>
-                </p>
-            </div>
-            <div class="education-item">
-                <h3><i class="fas fa-school"></i> HSC (Science) - 2022</h3>
-                <p>
-                    <i class="fas fa-map-marker-alt"></i> Scholarshome
-                    <span class="date">
-                        <i class="fas fa-star"></i> GPA: 5/5
-                    </span>
-                </p>
-            </div>
-            <div class="education-item">
-                <h3><i class="fas fa-school"></i> SSC (Science) - 2020</h3>
-                <p>
-                    <i class="fas fa-map-marker-alt"></i> Dasher Bazar High School
-                    <span class="date">
-                        <i class="fas fa-star"></i> GPA: 5/5
-                    </span>
-                </p>
-            </div>
-        </section>
+        <div class="main-content">
+            <section class="section">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>
+                        <i class="fas fa-graduation-cap"></i>
+                        B.Sc. in Computer Science & Engineering
+                        <span class="badge">Current</span>
+                    </h3>
+                    <p>
+                        <a href="https://www.lus.ac.bd/" class="external-link" target="_blank">
+                            <i class="fas fa-university"></i> Leading University
+                        </a>
+                        <span class="date">
+                            <i class="far fa-calendar-alt"></i> Expected Graduation: March 2027
+                        </span>
+                    </p>
+                </div>
+                <div class="education-item">
+                    <h3><i class="fas fa-school"></i> HSC (Science) - 2022</h3>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> Scholarshome
+                        <span class="date">
+                            <i class="fas fa-star"></i> GPA: 5/5
+                        </span>
+                    </p>
+                </div>
+                <div class="education-item">
+                    <h3><i class="fas fa-school"></i> SSC (Science) - 2020</h3>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> Dasher Bazar High School
+                        <span class="date">
+                            <i class="fas fa-star"></i> GPA: 5/5
+                        </span>
+                    </p>
+                </div>
+            </section>
 
-        <section class="section">
-            <h2>Technical Skills</h2>
-            <div class="skills">
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                    <ul>
-                        <li>C</li>
-                        <li>C++</li>
-                        <li>Python</li>
-                    </ul>
+            <section class="section">
+                <h2>Technical Skills</h2>
+                <div class="skills">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                        <ul>
+                            <li>C</li>
+                            <li>C++</li>
+                            <li>Python</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-brain"></i> Core Competencies</h3>
+                        <ul>
+                            <li>Data Structures & Algorithms</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                        <ul>
+                            <li><a href="https://github.com/sabbirahmedfahim" class="external-link" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><i class="fas fa-code"></i> VS Code</li>
+                            <li><i class="fab fa-python"></i> PyCharm</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-brain"></i> Core Competencies</h3>
-                    <ul>
-                        <li>Data Structures & Algorithms</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
-                    <ul>
-                        <li><a href="https://github.com/sabbirahmedfahim" class="external-link" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-                        <li><i class="fas fa-code"></i> VS Code</li>
-                        <li><i class="fab fa-python"></i> PyCharm</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section">
-            <h2>Leadership & Activities</h2>
-            <div class="activity-item">
-                <h3>
-                    <i class="fas fa-users"></i>
-                    <span class="role-title">Logistics Executive,</span>
-                </h3>
-                <p>
-                    <a href="https://www.facebook.com/ieeecslu" class="external-link" target="_blank">
-                        <i class="fab fa-facebook"></i> IEEE Computer Society LU SB Chapter
-                    </a>
-                    <span class="date">
-                        <i class="far fa-calendar-alt"></i> Apr '25–Present
-                    </span>
-                </p>
-            </div>
-            
-            <div class="activity-item">
-                <h3>
-                    <i class="fas fa-user-graduate"></i>
-                    <span class="role-title">Alumni,</span>
-                </h3>
-                <p>
-                    <a href="https://phitron.io/" class="external-link" target="_blank">
-                        <i class="fas fa-laptop-code"></i> Phitron
-                    </a>
-                    (Fundamentals→<a href="https://phitron.io/problem-solvers-club" class="external-link" target="_blank">XPSC</a>→Alumni)
-                    <span class="date">
-                        <i class="far fa-calendar-alt"></i> Mar '24–Present
-                    </span>
-                </p>
-            </div>
-            
-            <div class="activity-item">
-                <h3>
-                    <i class="fas fa-user-tie"></i>
-                    <span class="role-title">Active Member,</span>
-                </h3>
-                <p>
-                    <a href="https://www.facebook.com/profile.php?id=61572507621970" class="external-link" target="_blank">
-                        <i class="fab fa-facebook"></i> ACM Intermediate Batch
-                    </a>
-                    <span class="date">
-                        <i class="far fa-calendar-alt"></i> '25–Present
-                    </span>
-                </p>
-            </div>
-        </section>
+            <section class="section">
+                <h2>Leadership & Activities</h2>
+                <div class="activity-item">
+                    <h3>
+                        <i class="fas fa-users"></i>
+                        <span class="role-title">Logistics Executive,</span>
+                    </h3>
+                    <p>
+                        <a href="https://www.facebook.com/ieeecslu" class="external-link" target="_blank">
+                            <i class="fab fa-facebook"></i> IEEE Computer Society LU SB Chapter
+                        </a>
+                        <span class="date">
+                            <i class="far fa-calendar-alt"></i> Apr '25–Present
+                        </span>
+                    </p>
+                </div>
+                
+                <div class="activity-item">
+                    <h3>
+                        <i class="fas fa-user-graduate"></i>
+                        <span class="role-title">Alumni,</span>
+                    </h3>
+                    <p>
+                        <a href="https://phitron.io/" class="external-link" target="_blank">
+                            <i class="fas fa-laptop-code"></i> Phitron
+                        </a>
+                        (Fundamentals→<a href="https://phitron.io/problem-solvers-club" class="external-link" target="_blank">XPSC</a>→Alumni)
+                        <span class="date">
+                            <i class="far fa-calendar-alt"></i> Mar '24–Present
+                        </span>
+                    </p>
+                </div>
+                
+                <div class="activity-item">
+                    <h3>
+                        <i class="fas fa-user-tie"></i>
+                        <span class="role-title">Active Member,</span>
+                    </h3>
+                    <p>
+                        <a href="https://www.facebook.com/profile.php?id=61572507621970" class="external-link" target="_blank">
+                            <i class="fab fa-facebook"></i> ACM Intermediate Batch
+                        </a>
+                        <span class="date">
+                            <i class="far fa-calendar-alt"></i> '25–Present
+                        </span>
+                    </p>
+                </div>
+            </section>
+        </div>
     </div>
     
     <footer>
@@ -555,15 +560,6 @@
             document.body.setAttribute('data-theme', 'dark');
             themeToggle.textContent = '☀️';
         }
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>
