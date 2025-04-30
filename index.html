@@ -57,9 +57,9 @@
         }
         
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
         header {
@@ -121,8 +121,9 @@
         
         .main-content {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             padding: 1.5rem 0;
+            justify-content: space-between;
         }
         
         .section {
@@ -131,7 +132,8 @@
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
             transition: var(--transition);
-            flex: 1;
+            flex: 1 1 30%;
+            min-width: 0;
             overflow-y: auto;
             max-height: 80vh;
         }
@@ -143,8 +145,11 @@
         }
         
         .skill-name {
-            width: 150px;
+            width: 120px;
             font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .star-rating {
@@ -153,6 +158,7 @@
             font-size: 16px;
             letter-spacing: 2px;
             color: #ddd;
+            min-width: 80px;
         }
         
         .star-rating::before {
@@ -173,6 +179,7 @@
             margin-left: 8px;
             font-size: 14px;
             color: var(--text-muted);
+            white-space: nowrap;
         }
         
         .education-item, .activity-item {
@@ -338,6 +345,7 @@
             
             .section {
                 max-height: none;
+                flex: 1 1 100%;
             }
         }
 
@@ -363,7 +371,7 @@
             }
             
             .skill-name {
-                width: 120px;
+                width: 100px;
             }
             
             .theme-toggle {
@@ -449,19 +457,14 @@
             <section class="section">
                 <h2>Technical Skills</h2>
                 <div class="skill-item">
-                    <span class="skill-name">DSA</span>
-                    <div class="star-rating" data-rating="4"></div>
-                    <span class="rating-text">4/5</span>
+                    <span class="skill-name">C++</span>
+                    <div class="star-rating" data-rating="4.5"></div>
+                    <span class="rating-text">4.5/5</span>
                 </div>
                 <div class="skill-item">
                     <span class="skill-name">C</span>
                     <div class="star-rating" data-rating="4"></div>
                     <span class="rating-text">4/5</span>
-                </div>  
-                <div class="skill-item">
-                    <span class="skill-name">C++</span>
-                    <div class="star-rating" data-rating="4.5"></div>
-                    <span class="rating-text">4.5/5</span>
                 </div>
                 <div class="skill-item">
                     <span class="skill-name">Python</span>
@@ -469,9 +472,14 @@
                     <span class="rating-text">2/5</span>
                 </div>
                 <div class="skill-item">
-                    <span class="skill-name">Git/GitHub</span>
+                    <span class="skill-name">Data Structures</span>
                     <div class="star-rating" data-rating="4"></div>
                     <span class="rating-text">4/5</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Git/GitHub</span>
+                    <div class="star-rating" data-rating="3.5"></div>
+                    <span class="rating-text">3.5/5</span>
                 </div>
                 <div class="skill-item">
                     <span class="skill-name">VS Code</span>
@@ -581,5 +589,4 @@
             rating.style.setProperty('--rating', score);
         });
     </script>
-</body>
-</html>
+</body
