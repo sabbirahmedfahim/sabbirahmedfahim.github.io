@@ -7,25 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --background: #ffffff;
-            --text: #334155;
-            --text-muted: #64748b;
-            --card-bg: #ffffff;
-            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --link: #2563eb;
-            --link-hover: #1e40af;
-            --heading: #1e293b;
-            --border-radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        [data-theme="dark"] {
             --primary: #60a5fa;
             --primary-dark: #3b82f6;
             --secondary: #34d399;
@@ -40,6 +21,25 @@
             --link: #60a5fa;
             --link-hover: #93c5fd;
             --heading: #f8fafc;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        [data-theme="light"] {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --background: #ffffff;
+            --text: #334155;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --link: #2563eb;
+            --link-hover: #1e40af;
+            --heading: #1e293b;
         }
         
         body {
@@ -185,13 +185,13 @@
         .education-item, .activity-item {
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
         }
         
-        [data-theme="dark"] .education-item,
-        [data-theme="dark"] .activity-item {
-            border-bottom-color: rgba(255, 255, 255, 0.1);
+        [data-theme="light"] .education-item,
+        [data-theme="light"] .activity-item {
+            border-bottom-color: rgba(0, 0, 0, 0.1);
         }
         
         .education-item:last-child, 
@@ -405,8 +405,8 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <button class="theme-toggle" id="themeToggle">🌙</button>
+<body data-theme="dark">
+    <button class="theme-toggle" id="themeToggle">☀️</button>
     
     <header>
         <div class="container">
@@ -565,11 +565,18 @@
     <script>
         const themeToggle = document.getElementById('themeToggle');
         
-        themeToggle.textContent = '🌙';
+        document.body.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️';
+        
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.setAttribute('data-theme', 'light');
+            themeToggle.textContent = '🌙';
+        }
         
         themeToggle.addEventListener('click', () => {
-            if (document.body.hasAttribute('data-theme')) {
-                document.body.removeAttribute('data-theme');
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                document.body.setAttribute('data-theme', 'light');
                 themeToggle.textContent = '🌙';
                 localStorage.setItem('theme', 'light');
             } else {
@@ -578,15 +585,11 @@
                 localStorage.setItem('theme', 'dark');
             }
         });
-        
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-            themeToggle.textContent = '☀️';
-        }
 
         document.querySelectorAll('.star-rating').forEach(rating => {
             const score = parseFloat(rating.dataset.rating);
             rating.style.setProperty('--rating', score);
         });
     </script>
-</body
+</body>
+</html>
