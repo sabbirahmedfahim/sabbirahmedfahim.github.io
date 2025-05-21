@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@
             --border-radius: 12px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         [data-theme="light"] {
             --primary: #2563eb;
             --primary-dark: #1e40af;
@@ -41,7 +42,7 @@
             --link-hover: #1e40af;
             --heading: #1e293b;
         }
-        
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
@@ -51,17 +52,19 @@
             padding: 0;
             transition: var(--transition);
         }
-        
+
         @supports (font-variation-settings: normal) {
-            body { font-family: 'Inter var', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
+            body {
+                font-family: 'Inter var', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            }
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        
+
         header {
             background: var(--dark);
             color: white;
@@ -71,7 +74,7 @@
             overflow: hidden;
             transition: var(--transition);
         }
-        
+
         header::after {
             content: '';
             position: absolute;
@@ -81,14 +84,14 @@
             height: 4px;
             background: var(--accent);
         }
-        
+
         h1 {
             margin: 0;
             font-size: 2.25rem;
             font-weight: 800;
             letter-spacing: -0.025em;
         }
-        
+
         h2 {
             color: var(--heading);
             font-size: 1.5rem;
@@ -99,7 +102,7 @@
             display: inline-block;
             transition: var(--transition);
         }
-        
+
         h2::after {
             content: '';
             position: absolute;
@@ -110,7 +113,7 @@
             background: var(--primary);
             border-radius: 2px;
         }
-        
+
         h3 {
             color: var(--heading);
             font-size: 1.1rem;
@@ -118,14 +121,14 @@
             margin-bottom: 0.75rem;
             transition: var(--transition);
         }
-        
+
         .main-content {
             display: flex;
             gap: 1rem;
             padding: 1.5rem 0;
             justify-content: space-between;
         }
-        
+
         .section {
             background-color: var(--card-bg);
             padding: 1.5rem;
@@ -137,13 +140,13 @@
             overflow-y: auto;
             max-height: 80vh;
         }
-        
+
         .skill-item {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
         }
-        
+
         .skill-name {
             width: 120px;
             font-weight: 500;
@@ -151,7 +154,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
+
         .star-rating {
             display: inline-flex;
             position: relative;
@@ -160,11 +163,11 @@
             color: #ddd;
             min-width: 80px;
         }
-        
+
         .star-rating::before {
             content: "★★★★★";
         }
-        
+
         .star-rating::after {
             content: "★★★★★";
             position: absolute;
@@ -174,41 +177,44 @@
             overflow: hidden;
             color: var(--accent);
         }
-        
+
         .rating-text {
             margin-left: 8px;
             font-size: 14px;
             color: var(--text-muted);
             white-space: nowrap;
         }
-        
-        .education-item, .activity-item {
+
+        .education-item,
+        .activity-item {
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
         }
-        
+
         [data-theme="light"] .education-item,
         [data-theme="light"] .activity-item {
             border-bottom-color: rgba(0, 0, 0, 0.1);
         }
-        
-        .education-item:last-child, 
+
+        .education-item:last-child,
         .activity-item:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
-        
-        .education-item h3, .activity-item h3 {
+
+        .education-item h3,
+        .activity-item h3 {
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        
-        .education-item p, .activity-item p {
+
+        .education-item p,
+        .activity-item p {
             margin: 0.5rem 0 0;
             color: var(--text-muted);
             display: flex;
@@ -217,7 +223,7 @@
             gap: 0.5rem;
             font-size: 0.9rem;
         }
-        
+
         footer {
             text-align: center;
             padding: 1.5rem 0;
@@ -225,14 +231,14 @@
             color: white;
             transition: var(--transition);
         }
-        
+
         a {
             color: var(--link);
             text-decoration: none;
             transition: var(--transition);
             font-weight: 500;
         }
-        
+
         a:hover {
             color: var(--link-hover);
             text-decoration: underline;
@@ -247,7 +253,7 @@
             gap: 0.25rem;
             font-size: 0.9rem;
         }
-        
+
         .external-link:hover {
             color: var(--link-hover);
             text-decoration: underline;
@@ -342,7 +348,7 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-            
+
             .section {
                 max-height: none;
                 flex: 1 1 100%;
@@ -353,27 +359,27 @@
             .container {
                 padding: 0 15px;
             }
-            
+
             header {
                 padding: 1.5rem 0;
             }
-            
+
             h1 {
                 font-size: 1.8rem;
             }
-            
+
             h2 {
                 font-size: 1.3rem;
             }
-            
+
             .section {
                 padding: 1.25rem;
             }
-            
+
             .skill-name {
                 width: 100px;
             }
-            
+
             .theme-toggle {
                 width: 38px;
                 height: 38px;
@@ -381,13 +387,13 @@
                 top: 15px;
                 right: 15px;
             }
-            
+
             .contact-links {
                 flex-direction: column;
                 align-items: center;
                 gap: 0.75rem;
             }
-            
+
             .contact-links a {
                 width: 100%;
                 justify-content: center;
@@ -395,8 +401,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section {
@@ -435,16 +448,18 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body data-theme="dark">
     <button class="theme-toggle" id="themeToggle">☀️</button>
-    
+
     <header>
         <div class="container">
             <h1>Sabbir Ahmed Fahim</h1>
-            <p>CSE undergrad @ <a href="https://www.lus.ac.bd/" class="external-link" target="_blank">Leading University</a></p>
+            <p>CSE undergrad @ <a href="https://www.lus.ac.bd/" class="external-link" target="_blank">Leading
+                    University</a></p>
         </div>
     </header>
-    
+
     <div class="container">
         <div class="main-content">
             <section class="section">
@@ -453,7 +468,6 @@
                     <h3>
                         <i class="fas fa-graduation-cap"></i>
                         B.Sc. in Computer Science & Engineering
-                        <span class="badge">Current</span>
                     </h3>
                     <p>
                         <a href="https://www.lus.ac.bd/" class="external-link" target="_blank">
@@ -464,24 +478,6 @@
                         </span>
                     </p>
                 </div>
-                <div class="education-item">
-                    <h3><i class="fas fa-school"></i> HSC (Science) - 2022</h3>
-                    <p>
-                        <i class="fas fa-map-marker-alt"></i> Scholarshome
-                        <span class="date">
-                            <i class="fas fa-star"></i> GPA: 5/5
-                        </span>
-                    </p>
-                </div>
-                <div class="education-item">
-                    <h3><i class="fas fa-school"></i> SSC (Science) - 2020</h3>
-                    <p>
-                        <i class="fas fa-map-marker-alt"></i> Dasher Bazar High School
-                        <span class="date">
-                            <i class="fas fa-star"></i> GPA: 5/5
-                        </span>
-                    </p>
-                </div>
             </section>
 
             <section class="section">
@@ -489,20 +485,21 @@
                 <div class="repo-item">
                     <h3>
                         <i class="fab fa-github"></i>
-                        Introduction to Algorithms
+                        XPSC Code & Notes
                     </h3>
-                    <p>A collection of algorithm implementations and problem solutions I've learned.</p>
-                    <a href="https://github.com/sabbirahmedfahim/Introduction-to-Algorithms" class="external-link" target="_blank">
+                    <p>A collection of code and notes reflecting what I've learned and practiced.</p>
+                    <a href="https://github.com/sabbirahmedfahim/XPSC" class="external-link" target="_blank">
                         <i class="fas fa-external-link-alt"></i> View on GitHub
                     </a>
                 </div>
                 <div class="repo-item">
                     <h3>
                         <i class="fab fa-github"></i>
-                        XPSC Problem Solutions
+                        Introduction to Algorithms
                     </h3>
-                    <p>My solutions to problems from the XPSC (Phitron Problem Solving Club) challenges.</p>
-                    <a href="https://github.com/sabbirahmedfahim/XPSC" class="external-link" target="_blank">
+                    <p>My algo cheat sheet—code snippets, notes, and problem solutions for quick reference.</p>
+                    <a href="https://github.com/sabbirahmedfahim/Introduction-to-Algorithms" class="external-link"
+                        target="_blank">
                         <i class="fas fa-external-link-alt"></i> View on GitHub
                     </a>
                 </div>
@@ -510,7 +507,7 @@
 
             <section class="section">
                 <h2>Leadership & Activities</h2>
-                
+
                 <div class="activity-item">
                     <h3>
                         <i class="fas fa-user-graduate"></i>
@@ -520,7 +517,8 @@
                         <a href="https://phitron.io/" class="external-link" target="_blank">
                             <i class="fas fa-laptop-code"></i> Phitron
                         </a>
-                        (Fundamentals→<a href="https://phitron.io/problem-solvers-club" class="external-link" target="_blank">XPSC</a>→Alumni)
+                        (Fundamentals→<a href="https://phitron.io/problem-solvers-club" class="external-link"
+                            target="_blank">XPSC</a>→Alumni)
                         <span class="date">
                             <i class="far fa-calendar-alt"></i> Mar '24–Present
                         </span>
@@ -541,14 +539,15 @@
                         </span>
                     </p>
                 </div>
-                
+
                 <div class="activity-item">
                     <h3>
                         <i class="fas fa-user-tie"></i>
                         <span class="role-title">Active Member,</span>
                     </h3>
                     <p>
-                        <a href="https://www.facebook.com/profile.php?id=61572507621970" class="external-link" target="_blank">
+                        <a href="https://www.facebook.com/profile.php?id=61572507621970" class="external-link"
+                            target="_blank">
                             <i class="fab fa-facebook"></i> ACM Intermediate Batch
                         </a>
                         <span class="date">
@@ -559,7 +558,7 @@
             </section>
         </div>
     </div>
-    
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Sabbir Ahmed Fahim. All rights reserved.</p>
@@ -567,7 +566,8 @@
                 <a href="mailto:sabbirahmedfahim@gmail.com" target="_blank">
                     <i class="fas fa-envelope"></i> Email
                 </a>
-                <a href="https://www.linkedin.com/in/sabbirahmedfahim?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+                <a href="https://www.linkedin.com/in/sabbirahmedfahim?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                    target="_blank">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
                 <a href="https://github.com/sabbirahmedfahim" target="_blank">
@@ -585,16 +585,16 @@
 
     <script>
         const themeToggle = document.getElementById('themeToggle');
-        
+
         document.body.setAttribute('data-theme', 'dark');
         themeToggle.textContent = '☀️';
-        
+
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             document.body.setAttribute('data-theme', 'light');
             themeToggle.textContent = '🌙';
         }
-        
+
         themeToggle.addEventListener('click', () => {
             if (document.body.getAttribute('data-theme') === 'dark') {
                 document.body.setAttribute('data-theme', 'light');
@@ -613,4 +613,5 @@
         });
     </script>
 </body>
+
 </html>
