@@ -414,54 +414,134 @@ section + section { border-top: 1px solid var(--border); }
 .project-tag { font-size: 10px; padding: 3px 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 2px; color: var(--text-faint); letter-spacing: 0.05em; }
 
 /* ═══════════════════════════════════════════
-   ACHIEVEMENTS
+   ACHIEVEMENTS  —  single-line list layout
 ═══════════════════════════════════════════ */
-#achievements .ach-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+#achievements .ach-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 860px;
 }
-.ach-card {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px 22px;
-  display: flex; gap: 14px; align-items: flex-start;
-  transition: all 0.22s;
-  position: relative; overflow: hidden;
-  /* reset <a> styles */
-  text-decoration: none; color: inherit;
+
+/* base row */
+.ach-row {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
 }
-.ach-card.clickable { cursor: pointer; }
-.ach-card.clickable::after {
+.ach-row::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--green);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.ach-row:hover {
+  border-color: rgba(0,255,136,0.25);
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.ach-row:hover::before { opacity: 1; }
+
+/* clickable arrow */
+.ach-row.clickable::after {
   content: '↗';
-  position: absolute; top: 14px; right: 16px;
-  font-size: 12px; color: var(--text-faint);
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-left: auto;
+  flex-shrink: 0;
   transition: color 0.2s, transform 0.2s;
 }
-.ach-card:hover { border-color: rgba(0,255,136,0.25); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
-.ach-card.clickable:hover::after { color: var(--green); transform: translate(2px,-2px); }
-.ach-icon { font-size: 22px; flex-shrink: 0; line-height: 1.3; }
-.ach-content { flex: 1; min-width: 0; }
-.ach-title { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 4px; line-height: 1.4; padding-right: 20px; }
-.ach-sub { font-size: 11px; color: var(--text-faint); letter-spacing: 0.03em; }
-.ach-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; align-items: center; }
-.ach-rating {
-  display: inline-block; font-size: 11px; padding: 2px 9px;
-  background: var(--green-faint); border: 1px solid rgba(0,255,136,0.18);
-  color: var(--green); border-radius: 2px; letter-spacing: 0.04em;
+.ach-row.clickable:hover::after { color: var(--green); transform: translate(2px, -2px); }
+
+/* champion row — gold accent */
+.ach-row.champion {
+  border-color: rgba(255,184,0,0.25);
+  background: linear-gradient(90deg, rgba(255,184,0,0.04) 0%, var(--bg2) 60%);
 }
-.ach-team {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 10px; padding: 2px 9px;
-  background: rgba(255,184,0,0.07); border: 1px solid rgba(255,184,0,0.22);
-  color: var(--amber); border-radius: 2px; letter-spacing: 0.04em;
+.ach-row.champion::before { background: var(--amber); }
+.ach-row.champion:hover { border-color: rgba(255,184,0,0.45); box-shadow: 0 4px 24px rgba(255,184,0,0.08); }
+.ach-row.champion::after { color: var(--text-faint); }
+.ach-row.champion:hover::after { color: var(--amber); }
+
+.ach-row-icon { font-size: 18px; flex-shrink: 0; line-height: 1; }
+
+.ach-row-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
 }
-.ach-handle {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 10px; padding: 2px 9px;
-  background: var(--green-faint); border: 1px solid rgba(0,255,136,0.15);
-  color: var(--green); border-radius: 2px; letter-spacing: 0.04em;
+
+.ach-row-sub {
+  font-size: 11px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.tag-label { color: var(--text-faint); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* badges */
+.ach-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  padding: 2px 9px;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-green {
+  background: var(--green-faint);
+  border: 1px solid rgba(0,255,136,0.18);
+  color: var(--green);
+}
+.badge-amber {
+  background: rgba(255,184,0,0.07);
+  border: 1px solid rgba(255,184,0,0.22);
+  color: var(--amber);
+}
+.badge-champion {
+  background: rgba(255,184,0,0.12);
+  border: 1px solid rgba(255,184,0,0.35);
+  color: var(--amber);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* divider label between groups */
+.ach-divider {
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 4px 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ach-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
 
 /* ═══════════════════════════════════════════
    EDUCATION
@@ -522,7 +602,8 @@ section + section { border-top: 1px solid var(--border); }
   transition: all 0.2s;
 }
 .contact-link:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-.contact-link-icon { font-size: 15px; }
+.contact-link-icon { display: flex; align-items: center; flex-shrink: 0; }
+.contact-link-icon svg { width: 15px; height: 15px; fill: currentColor; }
 
 /* ═══════════════════════════════════════════
    FOOTER
@@ -549,27 +630,18 @@ footer {
 .stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.35s; }
 .stagger.visible > *:nth-child(7) { opacity:1; transform:none; transition-delay:0.42s; }
 .stagger.visible > *:nth-child(8) { opacity:1; transform:none; transition-delay:0.49s; }
+.stagger.visible > *:nth-child(9) { opacity:1; transform:none; transition-delay:0.56s; }
 
 /* ═══════════════════════════════════════════════════════════
-   RESPONSIVE  —  mobile-first
-   ─────────────────────────────────────────────────────────
-   xl   ≤ 1100px  large tablets / small laptops
-   lg   ≤  900px  tablets landscape
-   md   ≤  768px  tablets portrait
-   sm   ≤  600px  phones
-   xs   ≤  400px  small phones
-   landscape      short+wide phone
+   RESPONSIVE
 ════════════════════════════════════════════════════════════ */
 
-/* xl ─────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   #hero { gap: 44px; }
   .terminal-card { max-width: 340px; }
-  #achievements .ach-grid { grid-template-columns: repeat(2, 1fr); }
   #projects .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* lg ─────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   #hero {
     grid-template-columns: 1fr;
@@ -593,7 +665,6 @@ footer {
   .hero-actions { justify-content: center; }
 }
 
-/* md ─────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
@@ -603,7 +674,12 @@ footer {
   .section-line { max-width: 120px; }
 
   #projects .projects-grid { grid-template-columns: 1fr; }
-  #achievements .ach-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  #achievements .ach-list { max-width: 100%; }
+  .ach-row { height: auto; min-height: 48px; padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
+  .ach-row-title { white-space: normal; }
+  .ach-row.clickable::after { display: none; }
+  .ach-row-sub { display: none; }
 
   #education .edu-card { grid-template-columns: 1fr; gap: 8px; padding: 22px 24px; max-width: 100%; }
 
@@ -614,7 +690,6 @@ footer {
   .contact-link { padding: 9px 14px; font-size: 11px; }
 }
 
-/* sm ─────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   :root { --nav-h: 52px; }
 
@@ -625,7 +700,6 @@ footer {
     padding-top: calc(var(--nav-h) + 40px);
     padding-left: 16px; padding-right: 16px; padding-bottom: 48px;
   }
-  /* show photo on phones — smaller, still visible */
   .hero-right { display: flex; margin-top: 32px; }
   .terminal-card { max-width: 240px; }
 
@@ -645,8 +719,9 @@ footer {
   .skill-tag { padding: 8px 12px; font-size: 11px; }
 
   #projects .projects-grid { grid-template-columns: 1fr; gap: 14px; }
-  #achievements .ach-grid  { grid-template-columns: 1fr; gap: 10px; }
-  .ach-card.clickable::after { display: none; }
+
+  .ach-row { padding: 10px 14px; }
+  .ach-badge { font-size: 9px; padding: 2px 7px; }
 
   .act-item { flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 16px; }
   .act-period { font-size: 10px; margin-left: 18px; }
@@ -658,19 +733,15 @@ footer {
   footer { flex-direction: column; text-align: center; gap: 6px; padding: 18px 16px; }
 }
 
-/* xs ─────────────────────────────────────────────────────── */
 @media (max-width: 400px) {
   .hero-name { font-size: clamp(26px, 10vw, 34px); }
   .hero-stats { gap: 14px; }
   .stat-num { font-size: 20px; }
   .terminal-card { max-width: 200px; }
   section { padding: 36px 14px; }
-  .ach-card { padding: 16px; gap: 10px; }
-  .ach-icon { font-size: 18px; }
   .contact-link { flex: 1 1 100%; }
 }
 
-/* landscape phone ─────────────────────────────────────────── */
 @media (max-height: 480px) and (orientation: landscape) {
   #hero {
     min-height: auto;
@@ -688,7 +759,6 @@ footer {
   .hero-desc { margin: 0 0 24px; text-align: left; }
 }
 
-/* hi-DPI ─────────────────────────────────────────────────── */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   body::before { opacity: 0.22; }
 }
@@ -736,6 +806,7 @@ footer {
     </div>
     <p class="hero-desc">
       Competitive programmer and CSE undergrad at Leading University. 
+    </p>
     <div class="hero-stats">
       <div class="stat">
         <div class="stat-num">1000<span>+</span></div>
@@ -803,14 +874,17 @@ footer {
     <div class="section-line"></div>
   </div>
   <div class="projects-grid stagger">
-
+ 
     <div class="project-card">
       <div class="project-top">
         <div class="project-icon">📱</div>
-        <a href="https://github.com/sabbirahmedfahim/cp_repository" target="_blank" class="project-link">GitHub ↗</a>
+        <a href="https://github.com/sabbirahmedfahim/cp_repository" target="_blank" class="project-link">
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
       </div>
       <div class="project-name">cp_repository</div>
-      <div class="project-desc">Flutter app to centralize online judge problems. Track progress, categorize problems, and update solved status — all in one place.</div>
+      <div class="project-desc">Solving problems across multiple judges means your progress is scattered everywhere. This Flutter app brings it all into one place — add problems from any online judge, mark them solved, and actually see how far you've come. Built because the existing tools either lock you in or don't let you add your own problems.</div>
       <div class="project-tags">
         <span class="project-tag">Flutter</span>
         <span class="project-tag">Dart</span>
@@ -818,35 +892,41 @@ footer {
         <span class="project-tag">Git</span>
       </div>
     </div>
-
+ 
     <div class="project-card">
       <div class="project-top">
         <div class="project-icon">💳</div>
-        <a href="https://github.com/sabbirahmedfahim/DigitalWalletLite" target="_blank" class="project-link">GitHub ↗</a>
+        <a href="https://github.com/sabbirahmedfahim/DigitalWalletLite" target="_blank" class="project-link">
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
       </div>
       <div class="project-name">DigitalWalletLite</div>
-      <div class="project-desc">Console Java digital wallet with user login, money transfer, transaction history, and full account management.</div>
+      <div class="project-desc">A console-based Java wallet that talks to a real MySQL database — users can log in, send money to each other, and check their full transaction history. Built as a university OOP + DBMS project, it was the first time Java and databases clicked together for me in a meaningful way.</div>
       <div class="project-tags">
         <span class="project-tag">Java</span>
         <span class="project-tag">MySQL</span>
         <span class="project-tag">JDBC</span>
       </div>
     </div>
-
+ 
     <div class="project-card">
       <div class="project-top">
         <div class="project-icon">📚</div>
-        <a href="https://github.com/sabbirahmedfahim/my-code-library" target="_blank" class="project-link">GitHub ↗</a>
+        <a href="https://github.com/sabbirahmedfahim/my-code-library" target="_blank" class="project-link">
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
       </div>
       <div class="project-name">my-code-library</div>
-      <div class="project-desc">Personal C++ template library for competitive programming — algorithms, data structures, and contest utilities.</div>
+      <div class="project-desc">Every competitive programmer eventually builds their own template stash — this is mine. Handpicked C++ implementations of algorithms, data structures, graph theory, strings, and math accumulated through contest practice. Open during a contest, copy what you need, and focus on the problem.</div>
       <div class="project-tags">
         <span class="project-tag">C++</span>
         <span class="project-tag">Algorithms</span>
         <span class="project-tag">CP</span>
       </div>
     </div>
-
+ 
   </div>
 </section>
 
@@ -854,73 +934,45 @@ footer {
 <section id="achievements">
   <div class="section-header fade-in">
     <span class="section-num">03</span>
-    <h2 class="section-title">Achievements</h2>
+    <h2 class="section-title">Competitive Programming Achievement</h2>
     <div class="section-line"></div>
   </div>
-  <div class="ach-grid stagger">
 
-    <!-- 1000+ — static -->
-    <div class="ach-card">
-      <div class="ach-icon">🏆</div>
-      <div class="ach-content">
-        <div class="ach-title">1000+ Problems Solved</div>
-        <div class="ach-sub">Across multiple online judges</div>
-      </div>
-    </div>
+  <div class="ach-list stagger">
 
-    <!-- Codeforces — individual, handle, clickable -->
-    <a href="https://codeforces.com/profile/sabbirahmedfahim" target="_blank" class="ach-card clickable">
-      <div class="ach-icon">⚡</div>
-      <div class="ach-content">
-        <div class="ach-title">Codeforces Rated</div>
-        <div class="ach-meta">
-          <span class="ach-rating">Max Rating 1139 · Newbie</span>
-        </div>
-      </div>
+    <!-- ── Contest wins ─────────────────────────────────────── -->
+    <div class="ach-divider">Contest Results</div>
+
+    <!-- Champion — Tech Storm 6 Intra LU 2026 -->
+    <a href="https://serious-oj.com/contest/69edc9135f6eb47f01fd8ae2/scoreboard" target="_blank" class="ach-row champion clickable">
+      <div class="ach-row-icon">🥇</div>
+      <div class="ach-row-title">Champion — Tech Storm 6 Intra LU Programming Contest 2026</div>
+      <div class="ach-row-sub">Leading University Computer Club</div>
+      <span class="ach-badge badge-champion">1st Place</span>
     </a>
 
-    <!-- CodeChef — individual, handle, clickable -->
-    <a href="https://codechef.com/users/sabbirahmedfhm" target="_blank" class="ach-card clickable">
-      <div class="ach-icon">🍴</div>
-      <div class="ach-content">
-        <div class="ach-title">CodeChef Rated</div>
-        <div class="ach-meta">
-          <span class="ach-rating">Max Rating 1454 · ★★</span>
-        </div>
-      </div>
+    <!-- CODECOMBAT 2026 -->
+    <a href="https://serious-oj.com/contest/69d75a0f48074c00078872bc/scoreboard" target="_blank" class="ach-row clickable">
+      <div class="ach-row-icon">🏅</div>
+      <div class="ach-row-title">CODECOMBAT Programming Contest 2026</div>
+      <div class="ach-row-sub">Leading University</div>
+      <span class="ach-badge badge-green">sabbirahmedfahim</span>
     </a>
 
-    <a href="https://serious-oj.com/contest/69d75a0f48074c00078872bc/scoreboard" target="_blank" class="ach-card clickable">
-      <div class="ach-icon">🎯</div>
-      <div class="ach-content">
-        <div class="ach-title">CODECOMBAT Programming Contest 2026</div>
-        <div class="ach-sub">Leading University</div>
-        <div class="ach-meta">
-          <span class="ach-handle"><span class="tag-label">handle&thinsp;</span>sabbirahmedfahim</span>
-        </div>
-      </div>
+    <!-- IUPC 2025 -->
+    <a href="https://toph.co/c/inter-university-mu-cse-fest-2025/standings" target="_blank" class="ach-row clickable">
+      <div class="ach-row-icon">🏅</div>
+      <div class="ach-row-title">IUPC 2025</div>
+      <div class="ach-row-sub">Metropolitan University</div>
+      <span class="ach-badge badge-amber">team · LU_Finix</span>
     </a>
 
-    <a href="https://toph.co/c/inter-university-mu-cse-fest-2025/standings" target="_blank" class="ach-card clickable">
-      <div class="ach-icon">🎯</div>
-      <div class="ach-content">
-        <div class="ach-title">IUPC 2025</div>
-        <div class="ach-sub">Metropolitan University</div>
-        <div class="ach-meta">
-          <span class="ach-team"><span class="tag-label">team&thinsp;</span>LU_Finix</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="https://serious-oj.com/contest/67559b35a9f1c7000843e73f/scoreboard" target="_blank" class="ach-card clickable">
-      <div class="ach-icon">🎯</div>
-      <div class="ach-content">
-        <div class="ach-title">IUJPC 2024</div>
-        <div class="ach-sub">Leading University</div>
-        <div class="ach-meta">
-          <span class="ach-team"><span class="tag-label">team&thinsp;</span>LU_Dynamic_Programmers</span>
-        </div>
-      </div>
+    <!-- IUJPC 2024 -->
+    <a href="https://serious-oj.com/contest/67559b35a9f1c7000843e73f/scoreboard" target="_blank" class="ach-row clickable">
+      <div class="ach-row-icon">🏅</div>
+      <div class="ach-row-title">IUJPC 2024</div>
+      <div class="ach-row-sub">Leading University</div>
+      <span class="ach-badge badge-amber">team · LU_Dynamic_Programmers</span>
     </a>
 
   </div>
@@ -987,19 +1039,19 @@ footer {
   </a>
   <div class="contact-links stagger">
     <a href="https://github.com/sabbirahmedfahim" target="_blank" class="contact-link">
-      <span class="contact-link-icon">🐙</span> GitHub
+      <span class="contact-link-icon"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span> GitHub
     </a>
     <a href="https://linkedin.com/in/sabbirahmedfahim" target="_blank" class="contact-link">
-      <span class="contact-link-icon">💼</span> LinkedIn
+      <span class="contact-link-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span> LinkedIn
     </a>
     <a href="https://codeforces.com/profile/sabbirahmedfahim" target="_blank" class="contact-link">
-      <span class="contact-link-icon">⚡</span> Codeforces
+      Codeforces
     </a>
     <a href="https://codechef.com/users/sabbirahmedfhm" target="_blank" class="contact-link">
-      <span class="contact-link-icon">🍴</span> CodeChef
+      CodeChef
     </a>
     <a href="mailto:dev.sabbirfahim@gmail.com" class="contact-link">
-      <span class="contact-link-icon">✉️</span> Email
+      <span class="contact-link-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span> Email
     </a>
   </div>
 </section>
