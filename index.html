@@ -8,9 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 
-/* ═══════════════════════════════════════════
-   VARIABLES
-═══════════════════════════════════════════ */
 :root {
   --bg:           #090c0f;
   --bg2:          #0e1318;
@@ -31,9 +28,6 @@
   --nav-h:        56px;
 }
 
-/* ═══════════════════════════════════════════
-   RESET
-═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -66,9 +60,6 @@ body::after {
 ::-webkit-scrollbar-thumb:hover { background: var(--green-dim); }
 ::selection { background: var(--green); color: var(--bg); }
 
-/* ═══════════════════════════════════════════
-   NAV
-═══════════════════════════════════════════ */
 nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 200;
@@ -138,7 +129,6 @@ nav {
   transform-origin: center;
 }
 
-/* mobile panel */
 .nav-mobile-panel {
   display: none;
   position: fixed;
@@ -168,9 +158,6 @@ nav {
 .nav-mobile-panel a:hover,
 .nav-mobile-panel a.active { color: var(--green); padding-left: 10px; }
 
-/* ═══════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════ */
 #hero {
   min-height: 100vh;
   display: grid;
@@ -283,7 +270,6 @@ nav {
   flex-wrap: wrap;
 }
 
-/* buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -306,7 +292,6 @@ nav {
 .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-1px); }
 
-/* photo card */
 .hero-right {
   position: relative; z-index: 1;
   display: flex;
@@ -350,9 +335,6 @@ nav {
   text-shadow: 0 0 40px rgba(0,255,136,0.3);
 }
 
-/* ═══════════════════════════════════════════
-   SECTION SHARED
-═══════════════════════════════════════════ */
 section { padding: clamp(56px,8vw,110px) clamp(16px,5vw,80px); }
 section + section { border-top: 1px solid var(--border); }
 .section-header {
@@ -367,9 +349,6 @@ section + section { border-top: 1px solid var(--border); }
 }
 .section-line { flex: 1; height: 1px; background: var(--border); max-width: 200px; }
 
-/* ═══════════════════════════════════════════
-   SKILLS
-═══════════════════════════════════════════ */
 #skills .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
 .skill-tag {
   display: inline-flex; align-items: center; gap: 8px;
@@ -381,9 +360,6 @@ section + section { border-top: 1px solid var(--border); }
 .skill-tag:hover { border-color: var(--green); color: var(--green); background: var(--green-faint); transform: translateY(-2px); }
 .skill-icon { font-size: 14px; }
 
-/* ═══════════════════════════════════════════
-   PROJECTS
-═══════════════════════════════════════════ */
 #projects .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -413,9 +389,58 @@ section + section { border-top: 1px solid var(--border); }
 .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .project-tag { font-size: 10px; padding: 3px 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 2px; color: var(--text-faint); letter-spacing: 0.05em; }
 
-/* ═══════════════════════════════════════════
-   ACHIEVEMENTS  —  single-line list layout
-═══════════════════════════════════════════ */
+.cp-stats {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  max-width: 560px;
+  overflow: hidden;
+}
+.cp-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  gap: 4px;
+  text-decoration: none;
+  color: inherit;
+}
+.cp-stat-link { transition: background 0.2s; }
+.cp-stat-link:hover { background: var(--green-faint); }
+.cp-stat-link:hover .cp-stat-platform { color: var(--green); }
+.cp-stat-sep {
+  width: 1px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.cp-stat-platform {
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.cp-stat-num {
+  font-family: var(--font-disp);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+.cp-stat-num span { color: var(--green); }
+.cp-stat-num.amber { color: var(--amber); }
+.cp-stat-label {
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 #achievements .ach-list {
   display: flex;
   flex-direction: column;
@@ -423,7 +448,6 @@ section + section { border-top: 1px solid var(--border); }
   max-width: 860px;
 }
 
-/* base row */
 .ach-row {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -454,7 +478,6 @@ section + section { border-top: 1px solid var(--border); }
 }
 .ach-row:hover::before { opacity: 1; }
 
-/* clickable arrow */
 .ach-row.clickable::after {
   content: '↗';
   font-size: 11px;
@@ -465,7 +488,6 @@ section + section { border-top: 1px solid var(--border); }
 }
 .ach-row.clickable:hover::after { color: var(--green); transform: translate(2px, -2px); }
 
-/* champion row — gold accent */
 .ach-row.champion {
   border-color: rgba(255,184,0,0.25);
   background: linear-gradient(90deg, rgba(255,184,0,0.04) 0%, var(--bg2) 60%);
@@ -495,7 +517,6 @@ section + section { border-top: 1px solid var(--border); }
   flex-shrink: 0;
 }
 
-/* badges */
 .ach-badge {
   display: inline-flex;
   align-items: center;
@@ -525,7 +546,6 @@ section + section { border-top: 1px solid var(--border); }
   letter-spacing: 0.06em;
 }
 
-/* divider label between groups */
 .ach-divider {
   font-size: 10px;
   color: var(--text-faint);
@@ -543,9 +563,6 @@ section + section { border-top: 1px solid var(--border); }
   background: var(--border);
 }
 
-/* ═══════════════════════════════════════════
-   EDUCATION
-═══════════════════════════════════════════ */
 #education .edu-card {
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 28px 32px;
@@ -562,9 +579,6 @@ section + section { border-top: 1px solid var(--border); }
 .edu-school { font-size: 13px; color: var(--text-dim); margin-bottom: 4px; }
 .edu-detail { font-size: 12px; color: var(--text-faint); }
 
-/* ═══════════════════════════════════════════
-   ACTIVITIES
-═══════════════════════════════════════════ */
 #activities .act-list { display: flex; flex-direction: column; gap: 10px; max-width: 680px; }
 .act-item {
   background: var(--bg2); border: 1px solid var(--border);
@@ -578,9 +592,6 @@ section + section { border-top: 1px solid var(--border); }
 .act-name { font-size: 13px; color: var(--text); }
 .act-period { font-size: 11px; color: var(--text-faint); white-space: nowrap; flex-shrink: 0; }
 
-/* ═══════════════════════════════════════════
-   CONTACT
-═══════════════════════════════════════════ */
 #contact { text-align: center; }
 #contact .section-header { justify-content: center; }
 .contact-email-big {
@@ -605,9 +616,6 @@ section + section { border-top: 1px solid var(--border); }
 .contact-link-icon { display: flex; align-items: center; flex-shrink: 0; }
 .contact-link-icon svg { width: 15px; height: 15px; fill: currentColor; }
 
-/* ═══════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════ */
 footer {
   border-top: 1px solid var(--border);
   padding: 22px clamp(16px,5vw,80px);
@@ -616,9 +624,6 @@ footer {
   flex-wrap: wrap; gap: 10px;
 }
 
-/* ═══════════════════════════════════════════
-   ANIMATIONS
-═══════════════════════════════════════════ */
 .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 .stagger > * { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -631,10 +636,6 @@ footer {
 .stagger.visible > *:nth-child(7) { opacity:1; transform:none; transition-delay:0.42s; }
 .stagger.visible > *:nth-child(8) { opacity:1; transform:none; transition-delay:0.49s; }
 .stagger.visible > *:nth-child(9) { opacity:1; transform:none; transition-delay:0.56s; }
-
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════════════════════════ */
 
 @media (max-width: 1100px) {
   #hero { gap: 44px; }
@@ -663,6 +664,7 @@ footer {
   .hero-desc { margin: 0 auto 32px; text-align: left; max-width: 500px; }
   .hero-stats { justify-content: center; }
   .hero-actions { justify-content: center; }
+  .cp-stats { max-width: 100%; }
 }
 
 @media (max-width: 768px) {
@@ -723,6 +725,10 @@ footer {
   .ach-row { padding: 10px 14px; }
   .ach-badge { font-size: 9px; padding: 2px 7px; }
 
+  .cp-stats { max-width: 100%; }
+  .cp-stat { padding: 16px 10px; }
+  .cp-stat-num { font-size: 22px; }
+
   .act-item { flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 16px; }
   .act-period { font-size: 10px; margin-left: 18px; }
 
@@ -767,7 +773,6 @@ footer {
 </head>
 <body>
 
-<!-- ══════════════════════ NAV ══════════════════════ -->
 <nav id="mainNav">
   <div class="nav-logo">
     <span class="dim">~/</span>sabbirahmedfahim<span class="dim"></span>
@@ -792,7 +797,6 @@ footer {
   <a href="#contact"      class="mob-link">Contact</a>
 </div>
 
-<!-- ══════════════════════ HERO ══════════════════════ -->
 <section id="hero">
   <div class="hero-left">
     <div class="hero-tag">
@@ -823,7 +827,7 @@ footer {
     </div>
     <div class="hero-actions">
       <a href="https://docs.google.com/document/d/1fujoO2_uxLqkn6Zk3LuN4WKgOvogSC4PXPL6VL6pGvI/edit?tab=t.0"
-         target="_blank" class="btn btn-primary">↗ View CV</a>
+         target="_blank" class="btn btn-primary">↗ CV</a>
       <a href="#contact" class="btn btn-secondary">Get in Touch →</a>
     </div>
   </div>
@@ -847,7 +851,6 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════════════ SKILLS ══════════════════════ -->
 <section id="skills">
   <div class="section-header fade-in">
     <span class="section-num">01</span>
@@ -857,16 +860,15 @@ footer {
   <div class="skills-grid stagger">
     <div class="skill-tag"><span class="skill-icon">⚡</span> Data Structures &amp; Algorithms</div>
     <div class="skill-tag"><span class="skill-icon">🧩</span> Problem Solving</div>
+    <div class="skill-tag"><span class="skill-icon">🔗</span> Git</div>
     <div class="skill-tag"><span class="skill-icon">🔷</span> C++</div>
     <div class="skill-tag"><span class="skill-icon">📱</span> Flutter</div>
     <div class="skill-tag"><span class="skill-icon">🎯</span> Dart</div>
     <div class="skill-tag"><span class="skill-icon">☕</span> Java</div>
     <div class="skill-tag"><span class="skill-icon">🗄️</span> MySQL</div>
-    <div class="skill-tag"><span class="skill-icon">🔗</span> Git</div>
   </div>
 </section>
 
-<!-- ══════════════════════ PROJECTS ══════════════════════ -->
 <section id="projects">
   <div class="section-header fade-in">
     <span class="section-num">02</span>
@@ -874,7 +876,7 @@ footer {
     <div class="section-line"></div>
   </div>
   <div class="projects-grid stagger">
- 
+
     <div class="project-card">
       <div class="project-top">
         <div class="project-icon">📱</div>
@@ -892,7 +894,7 @@ footer {
         <span class="project-tag">Git</span>
       </div>
     </div>
- 
+
     <div class="project-card">
       <div class="project-top">
         <div class="project-icon">💳</div>
@@ -909,7 +911,7 @@ footer {
         <span class="project-tag">JDBC</span>
       </div>
     </div>
- 
+
     <div class="project-card">
       <div class="project-top">
         <div class="project-icon">📚</div>
@@ -926,21 +928,47 @@ footer {
         <span class="project-tag">CP</span>
       </div>
     </div>
- 
+
   </div>
 </section>
 
-<!-- ══════════════════════ ACHIEVEMENTS ══════════════════════ -->
 <section id="achievements">
   <div class="section-header fade-in">
     <span class="section-num">03</span>
-    <h2 class="section-title">Competitive Programming Achievement</h2>
+    <h2 class="section-title">Competitive Programming</h2>
     <div class="section-line"></div>
+  </div>
+
+  <div class="cp-stats fade-in">
+    <div class="cp-stat">
+      <div class="cp-stat-num">1000<span>+</span></div>
+      <div class="cp-stat-label">Problems Solved</div>
+    </div>
+    <div class="cp-stat-sep"></div>
+    <a href="https://codeforces.com/profile/sabbirahmedfahim" target="_blank" class="cp-stat cp-stat-link">
+      <div class="cp-stat-platform">Codeforces</div>
+      <!-- <div class="cp-stat-num amber">1139</div>
+      <div class="cp-stat-label">Rating · Newbie</div> -->
+    </a>
+    <div class="cp-stat-sep"></div>
+    <a href="https://codechef.com/users/sabbirahmedfhm" target="_blank" class="cp-stat cp-stat-link">
+      <div class="cp-stat-platform">CodeChef</div>
+      <!-- <div class="cp-stat-num amber">1454</div>
+      <div class="cp-stat-label">Rating · 2★</div> -->
+    </a>
+    <div class="cp-stat-sep"></div>
+    <a href="https://leetcode.com/u/sabbirahmedfahim/" target="_blank" class="cp-stat cp-stat-link">
+      <div class="cp-stat-platform">LeetCode</div>
+      <!-- <div class="cp-stat-num amber">78+</div> -->
+      <!-- <div class="cp-stat-label">Problems Solved</div> -->
+    </a>
+
   </div>
 
   <div class="ach-list stagger">
 
-    <!-- Champion — Intra LU 2026 -->
+    <div class="ach-divider">Contest Results</div>
+
     <a href="https://serious-oj.com/contest/69edc9135f6eb47f01fd8ae2/scoreboard" target="_blank" class="ach-row champion clickable">
       <div class="ach-row-icon">🥇</div>
       <div class="ach-row-title">Intra LU Programming Contest 2026</div>
@@ -948,18 +976,16 @@ footer {
       <span class="ach-badge badge-champion">1st Place</span>
     </a>
 
-    <!-- IUPC 2025 -->
     <a href="https://toph.co/c/inter-university-mu-cse-fest-2025/standings" target="_blank" class="ach-row clickable">
       <div class="ach-row-icon">🏅</div>
-      <div class="ach-row-title">IUPC 2025</div>
+      <div class="ach-row-title">MU Inter University Programming Contest 2025</div>
       <div class="ach-row-sub">Metropolitan University</div>
       <span class="ach-badge badge-amber">team · LU_Finix</span>
     </a>
 
-    <!-- IUJPC 2024 -->
     <a href="https://serious-oj.com/contest/67559b35a9f1c7000843e73f/scoreboard" target="_blank" class="ach-row clickable">
       <div class="ach-row-icon">🏅</div>
-      <div class="ach-row-title">IUJPC 2024</div>
+      <div class="ach-row-title">LU IUJPC : Sylhet Division 2024</div>
       <div class="ach-row-sub">Leading University</div>
       <span class="ach-badge badge-amber">team · LU_Dynamic_Programmers</span>
     </a>
@@ -967,7 +993,6 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════════════ EDUCATION ══════════════════════ -->
 <section id="education">
   <div class="section-header fade-in">
     <span class="section-num">04</span>
@@ -984,7 +1009,6 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════════════ ACTIVITIES ══════════════════════ -->
 <section id="activities">
   <div class="section-header fade-in">
     <span class="section-num">05</span>
@@ -1016,7 +1040,6 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════════════ CONTACT ══════════════════════ -->
 <section id="contact">
   <div class="section-header fade-in" style="justify-content:center;">
     <span class="section-num">06</span>
@@ -1027,39 +1050,30 @@ footer {
     dev.sabbirfahim@gmail.com
   </a>
   <div class="contact-links stagger">
+  </a>
+  <a href="https://linkedin.com/in/sabbirahmedfahim" target="_blank" class="contact-link">
+    <span class="contact-link-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span> LinkedIn
+  </a>
     <a href="https://github.com/sabbirahmedfahim" target="_blank" class="contact-link">
       <span class="contact-link-icon"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span> GitHub
-    </a>
-    <a href="https://linkedin.com/in/sabbirahmedfahim" target="_blank" class="contact-link">
-      <span class="contact-link-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span> LinkedIn
-    </a>
-    <a href="https://codeforces.com/profile/sabbirahmedfahim" target="_blank" class="contact-link">
-      Codeforces
-    </a>
-    <a href="https://codechef.com/users/sabbirahmedfhm" target="_blank" class="contact-link">
-      CodeChef
-    </a>
     <a href="mailto:dev.sabbirfahim@gmail.com" class="contact-link">
       <span class="contact-link-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span> Email
     </a>
   </div>
 </section>
 
-<!-- ══════════════════════ FOOTER ══════════════════════ -->
 <footer>
-  <div>© 2026 Sabbir Ahmed Fahim &nbsp;·&nbsp; <span style="color:var(--green)">sabbirahmedfahim.github.io</span></div>
+  <div>© 2026 Sabbir Ahmed Fahim</span></div>
   <div style="letter-spacing:0.04em;">جزاك اللهُ خيرًا</div>
 </footer>
 
-<!-- ══════════════════════ JS ══════════════════════ -->
 <script>
-/* ── Typewriter ─────────────────────────── */
 const phrases = [
   'طالبُ العلم',
   'Competitive Programmer',
-  'CSE Undergrad @ Leading University',
+  'CSE Undergrad @Leading University',
   'Problem Solver',
-  'Flutter Developer',
+  // 'Flutter Developer',
 ];
 let pi = 0, ci = 0, deleting = false;
 const typedEl = document.getElementById('typedText');
@@ -1076,7 +1090,6 @@ function type() {
 }
 type();
 
-/* ── Photo fallback ─────────────────────── */
 const photoImg = document.querySelector('.photo-wrap img');
 const photoFb  = document.getElementById('photoFallback');
 function showFallback() {
@@ -1088,7 +1101,6 @@ if (photoImg) {
   photoImg.addEventListener('error', showFallback);
 }
 
-/* ── Scroll animations ──────────────────── */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
@@ -1096,7 +1108,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-in, .stagger').forEach(el => observer.observe(el));
 
-/* ── Mobile nav ─────────────────────────── */
 const hamburger   = document.getElementById('hamburger');
 const mobilePanel = document.getElementById('mobilePanel');
 const bars        = hamburger.querySelectorAll('span');
@@ -1128,7 +1139,6 @@ document.addEventListener('click', e => {
   if (!hamburger.contains(e.target) && !mobilePanel.contains(e.target)) setOpen(false);
 });
 
-/* ── Active nav on scroll ───────────────── */
 const allSections = document.querySelectorAll('section[id]');
 const desktopAs   = document.querySelectorAll('.nav-links a');
 const mobileAs    = document.querySelectorAll('.mob-link');
