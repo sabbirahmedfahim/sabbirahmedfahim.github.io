@@ -371,6 +371,98 @@ section + section { border-top: 1px solid var(--border); }
   transition: all 0.25s; position: relative; overflow: hidden;
   display: flex; flex-direction: column;
 }
+.project-card.has-carousel { padding-top: 0; }
+.project-carousel {
+  position: relative;
+  width: calc(100% + 48px);
+  margin: -24px -24px 16px -24px;
+  height: 360px;
+  overflow: hidden;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--bg3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-track {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+.carousel-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg3);
+}
+.carousel-slide img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+}
+.project-carousel:hover .carousel-dots { opacity: 0.6; }
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(200,216,228,0.4);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  padding: 0;
+}
+.carousel-dot.active {
+  background: var(--green);
+  width: 16px;
+  border-radius: 3px;
+}
+.carousel-dot:hover { background: rgba(200,216,228,0.6); }
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: rgba(0,255,136,0.15);
+  border: 1px solid rgba(0,255,136,0.3);
+  border-radius: 4px;
+  color: var(--green);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 11;
+  opacity: 0;
+}
+.carousel-arrow:hover { 
+  background: rgba(0,255,136,0.25);
+  border-color: rgba(0,255,136,0.5);
+  box-shadow: 0 0 12px rgba(0,255,136,0.2);
+}
+.carousel-arrow-left { left: 12px; }
+.carousel-arrow-right { right: 12px; }
+.project-carousel:hover .carousel-arrow { opacity: 1; }
 .project-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0;
@@ -446,6 +538,77 @@ section + section { border-top: 1px solid var(--border); }
   flex-direction: column;
   gap: 10px;
   max-width: 860px;
+}
+
+.rank-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 20px;
+  align-items: center;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.rank-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--green);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.rank-card:hover {
+  border-color: rgba(0,255,136,0.25);
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.rank-card:hover::before { opacity: 1; }
+
+.rank-card.gold { border-color: rgba(255,184,0,0.25); background: linear-gradient(90deg, rgba(255,184,0,0.04) 0%, var(--bg2) 60%); }
+.rank-card.gold::before { background: var(--amber); }
+.rank-card.gold:hover { border-color: rgba(255,184,0,0.45); box-shadow: 0 4px 24px rgba(255,184,0,0.08); }
+
+.rank-medal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.rank-medal-icon {
+  font-size: 36px;
+  line-height: 1;
+}
+.rank-medal-num {
+  font-family: var(--font-disp);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+}
+.rank-medal-label {
+  font-size: 9px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rank-info { display: flex; flex-direction: column; gap: 6px; }
+.rank-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+.rank-org {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.rank-team {
+  font-size: 11px;
+  color: var(--text-faint);
 }
 
 .ach-row {
@@ -677,11 +840,20 @@ footer {
 
   #projects .projects-grid { grid-template-columns: 1fr; }
 
+  .project-carousel { height: 320px; }
+
   #achievements .ach-list { max-width: 100%; }
   .ach-row { height: auto; min-height: 48px; padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
   .ach-row-title { white-space: normal; }
   .ach-row.clickable::after { display: none; }
   .ach-row-sub { display: none; }
+
+  .rank-card { grid-template-columns: 70px 1fr; gap: 14px; padding: 16px; }
+  .rank-medal-icon { font-size: 28px; }
+  .rank-medal-num { font-size: 18px; }
+  .rank-title { font-size: 13px; }
+  .rank-org { font-size: 11px; }
+  .rank-team { font-size: 10px; }
 
   #education .edu-card { grid-template-columns: 1fr; gap: 8px; padding: 22px 24px; max-width: 100%; }
 
@@ -721,6 +893,8 @@ footer {
   .skill-tag { padding: 8px 12px; font-size: 11px; }
 
   #projects .projects-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  .project-carousel { height: 280px; }
 
   .ach-row { padding: 10px 14px; }
   .ach-badge { font-size: 9px; padding: 2px 7px; }
@@ -877,6 +1051,46 @@ footer {
   </div>
   <div class="projects-grid stagger">
 
+    <div class="project-card has-carousel">
+      <div class="project-carousel">
+        <div class="carousel-track" id="campusrideTrack">
+          <div class="carousel-slide"><img src="https://raw.githubusercontent.com/sabbirahmedfahim/campusride/main/assets/icon/dashboard.png" alt="Dashboard"></div>
+          <div class="carousel-slide"><img src="https://raw.githubusercontent.com/sabbirahmedfahim/campusride/main/assets/icon/ride_detail.png" alt="Ride Detail"></div>
+          <div class="carousel-slide"><img src="https://raw.githubusercontent.com/sabbirahmedfahim/campusride/main/assets/icon/leaderboard.png" alt="Leaderboard"></div>
+          <div class="carousel-slide"><img src="https://raw.githubusercontent.com/sabbirahmedfahim/campusride/main/assets/icon/inbox.png" alt="Chat"></div>
+        </div>
+        <button class="carousel-arrow carousel-arrow-left" id="campusridePrev">&lt;</button>
+        <button class="carousel-arrow carousel-arrow-right" id="campusrideNext">&gt;</button>
+        <div class="carousel-dots" id="campusrideDots">
+          <button class="carousel-dot active" data-slide="0"></button>
+          <button class="carousel-dot" data-slide="1"></button>
+          <button class="carousel-dot" data-slide="2"></button>
+          <button class="carousel-dot" data-slide="3"></button>
+        </div>
+      </div>
+      <div class="project-top">
+        <div class="project-icon">💚</div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <a href="https://github.com/sabbirahmedfahim/campusride" target="_blank" class="project-link">
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            Code
+          </a>
+          <a href="https://github.com/sabbirahmedfahim/campusride/releases/" target="_blank" class="project-link">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            APK
+          </a>
+        </div>
+      </div>
+      <div class="project-name">CampusRide</div>
+      <div class="project-desc">University-exclusive ride sharing platform with real-time sync, verified student-only access, and gamified leaderboard. Production-ready Android APK built for campus commuting.</div>
+      <div class="project-tags">
+        <span class="project-tag">Flutter</span>
+        <span class="project-tag">Supabase</span>
+        <span class="project-tag">Dart</span>
+        <span class="project-tag">PostgreSQL</span>
+      </div>
+    </div>
+
     <div class="project-card">
       <div class="project-top">
         <div class="project-icon">📱</div>
@@ -892,23 +1106,6 @@ footer {
         <span class="project-tag">Dart</span>
         <span class="project-tag">Supabase</span>
         <span class="project-tag">Git</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-top">
-        <div class="project-icon">💳</div>
-        <a href="https://github.com/sabbirahmedfahim/DigitalWalletLite" target="_blank" class="project-link">
-          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
-        </a>
-      </div>
-      <div class="project-name">DigitalWalletLite</div>
-      <div class="project-desc">A Java wallet program running on the console interface connecting to an actual MySQL database. It allows users to login, transfer funds to one another, and view their complete transaction history. This application was created as part of my college course on Object-Oriented Programming and Database Management Systems.</div>
-      <div class="project-tags">
-        <span class="project-tag">Java</span>
-        <span class="project-tag">MySQL</span>
-        <span class="project-tag">JDBC</span>
       </div>
     </div>
 
@@ -947,20 +1144,14 @@ footer {
     <div class="cp-stat-sep"></div>
     <a href="https://codeforces.com/profile/sabbirahmedfahim" target="_blank" class="cp-stat cp-stat-link">
       <div class="cp-stat-platform">Codeforces</div>
-      <!-- <div class="cp-stat-num amber">1139</div>
-      <div class="cp-stat-label">Rating · Newbie</div> -->
     </a>
     <div class="cp-stat-sep"></div>
     <a href="https://codechef.com/users/sabbirahmedfhm" target="_blank" class="cp-stat cp-stat-link">
       <div class="cp-stat-platform">CodeChef</div>
-      <!-- <div class="cp-stat-num amber">1454</div>
-      <div class="cp-stat-label">Rating · 2★</div> -->
     </a>
     <div class="cp-stat-sep"></div>
     <a href="https://leetcode.com/u/sabbirahmedfahim/" target="_blank" class="cp-stat cp-stat-link">
       <div class="cp-stat-platform">LeetCode</div>
-      <!-- <div class="cp-stat-num amber">78+</div> -->
-      <!-- <div class="cp-stat-label">Problems Solved</div> -->
     </a>
 
   </div>
@@ -969,25 +1160,53 @@ footer {
 
     <div class="ach-divider">Contest Results</div>
 
-    <a href="https://serious-oj.com/contest/69edc9135f6eb47f01fd8ae2/scoreboard" target="_blank" class="ach-row champion clickable">
-      <div class="ach-row-icon">🥇</div>
-      <div class="ach-row-title">Intra LU Programming Contest 2026</div>
-      <div class="ach-row-sub">Leading University Computer Club</div>
-      <span class="ach-badge badge-champion">1st Place</span>
+    <a href="https://serious-oj.com/contest/69edc9135f6eb47f01fd8ae2/scoreboard" target="_blank" class="rank-card gold" style="text-decoration: none; color: inherit; cursor: pointer;">
+      <div class="rank-medal">
+        <div class="rank-medal-icon">🥇</div>
+        <div class="rank-medal-num">1st</div>
+        <div class="rank-medal-label">Place</div>
+      </div>
+      <div class="rank-info">
+        <div class="rank-title">Intra LU Programming Contest 2026</div>
+        <div class="rank-org">Leading University Computer Club</div>
+        <div class="rank-team">Individual</div>
+      </div>
     </a>
 
-    <a href="https://toph.co/c/inter-university-mu-cse-fest-2025/standings" target="_blank" class="ach-row clickable">
-      <div class="ach-row-icon">🏅</div>
-      <div class="ach-row-title">MU Inter University Programming Contest 2025</div>
-      <div class="ach-row-sub">Metropolitan University</div>
-      <span class="ach-badge badge-amber">team · LU_Finix</span>
+    <div class="rank-card">
+      <div class="rank-medal">
+        <div class="rank-medal-num">36</div>
+        <div class="rank-medal-label">of 159</div>
+      </div>
+      <div class="rank-info">
+        <div class="rank-title">NSU IUPC 2026</div>
+        <div class="rank-org">North South University</div>
+        <div class="rank-team">team · LU_initial_commit</div>
+      </div>
+    </div>
+
+    <a href="https://toph.co/c/inter-university-mu-cse-fest-2025/standings" target="_blank" class="rank-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+      <div class="rank-medal">
+        <div class="rank-medal-num">89</div>
+        <div class="rank-medal-label">of 91</div>
+      </div>
+      <div class="rank-info">
+        <div class="rank-title">MU Inter University Programming Contest 2025</div>
+        <div class="rank-org">Metropolitan University</div>
+        <div class="rank-team">team · LU_Finix</div>
+      </div>
     </a>
 
-    <a href="https://serious-oj.com/contest/67559b35a9f1c7000843e73f/scoreboard" target="_blank" class="ach-row clickable">
-      <div class="ach-row-icon">🏅</div>
-      <div class="ach-row-title">LU IUJPC : Sylhet Division 2024</div>
-      <div class="ach-row-sub">Leading University</div>
-      <span class="ach-badge badge-amber">team · LU_Dynamic_Programmers</span>
+    <a href="https://serious-oj.com/contest/67559b35a9f1c7000843e73f/scoreboard" target="_blank" class="rank-card" style="text-decoration: none; color: inherit; cursor: pointer;">
+      <div class="rank-medal">
+        <div class="rank-medal-num">20</div>
+        <div class="rank-medal-label">of 35</div>
+      </div>
+      <div class="rank-info">
+        <div class="rank-title">LU IUJPC : Sylhet Division 2024</div>
+        <div class="rank-org">Leading University</div>
+        <div class="rank-team">team · LU_Dynamic_Programmers</div>
+      </div>
     </a>
 
   </div>
@@ -1050,12 +1269,12 @@ footer {
     dev.sabbirfahim@gmail.com
   </a>
   <div class="contact-links stagger">
-  </a>
-  <a href="https://linkedin.com/in/sabbirahmedfahim" target="_blank" class="contact-link">
-    <span class="contact-link-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span> LinkedIn
-  </a>
+    <a href="https://linkedin.com/in/sabbirahmedfahim" target="_blank" class="contact-link">
+      <span class="contact-link-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span> LinkedIn
+    </a>
     <a href="https://github.com/sabbirahmedfahim" target="_blank" class="contact-link">
       <span class="contact-link-icon"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span> GitHub
+    </a>
     <a href="mailto:dev.sabbirfahim@gmail.com" class="contact-link">
       <span class="contact-link-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span> Email
     </a>
@@ -1063,7 +1282,7 @@ footer {
 </section>
 
 <footer>
-  <div>© 2026 Sabbir Ahmed Fahim</span></div>
+  <div>© 2026 Sabbir Ahmed Fahim</div>
   <div style="letter-spacing:0.04em;">جزاك اللهُ خيرًا</div>
 </footer>
 
@@ -1073,7 +1292,6 @@ const phrases = [
   'Competitive Programmer',
   'CSE Undergrad @Leading University',
   'Problem Solver',
-  // 'Flutter Developer',
 ];
 let pi = 0, ci = 0, deleting = false;
 const typedEl = document.getElementById('typedText');
@@ -1152,6 +1370,39 @@ function updateActive() {
 }
 window.addEventListener('scroll', updateActive, { passive: true });
 updateActive();
+
+function initCarousels() {
+  const carousels = [
+    { track: 'campusrideTrack', dots: 'campusrideDots', prev: 'campusridePrev', next: 'campusrideNext', totalSlides: 4 }
+  ];
+  
+  carousels.forEach(carousel => {
+    const track = document.getElementById(carousel.track);
+    const dotsContainer = document.getElementById(carousel.dots);
+    const prevBtn = document.getElementById(carousel.prev);
+    const nextBtn = document.getElementById(carousel.next);
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    
+    function goToSlide(n) {
+      currentSlide = (n + carousel.totalSlides) % carousel.totalSlides;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+    }
+    
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToSlide(parseInt(dot.dataset.slide));
+      });
+    });
+    
+    prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+    nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+  });
+}
+initCarousels();
 </script>
 </body>
 </html>
