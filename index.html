@@ -16,7 +16,7 @@
   --sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--hand:"Caveat","Comic Sans MS",cursive;
   --ease:cubic-bezier(.22,.7,.12,1)}
 *{box-sizing:border-box;min-width:0}
-html{scroll-behavior:smooth;scroll-padding-top:20px;background:var(--bg)}
+html{scroll-behavior:smooth;scroll-padding-top:64px;background:var(--bg)}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:#bfc3c9;transition:color .12s,text-decoration-color .12s}
 a:hover{color:var(--blue);text-decoration-color:currentColor}
@@ -26,15 +26,11 @@ code{font-family:var(--mono);font-size:.85em}
 h1,h2,h3{font-weight:700;letter-spacing:-.02em;margin:0}
 p{margin:0 0 12px;max-width:64ch}
 
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;min-height:56px;gap:16px}
-.brand{font-weight:600;font-size:15px;text-decoration:none}
-.brand:hover{color:var(--ink)}
-nav{margin-left:auto;display:flex;gap:4px;font-size:15px}
-nav a{text-decoration:none;color:var(--mute);padding:8px 10px;border-radius:6px;transition:background .12s,color .12s}
-nav a:hover{color:var(--ink);background:var(--tint)}
 
-.hero{padding:clamp(24px,4vw,40px) 0 clamp(36px,5vw,56px)}
+
+
+
+.hero{padding:clamp(24px,4vw,40px) 0 clamp(20px,3vw,28px)}
 .prof{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
 .pbody{padding:22px clamp(18px,3vw,28px) 16px}
 .ptop{display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap}
@@ -55,11 +51,20 @@ nav a:hover{color:var(--ink);background:var(--tint)}
 .bio .sep{color:#c0c4ca;margin:0 4px}
 .bio a{color:var(--blue);text-decoration:none;font-weight:500}
 .bio a:hover{text-decoration:underline}
-.ptabs{display:flex;gap:2px;border-top:1px solid var(--line);padding:0 clamp(10px,2vw,18px);overflow-x:auto;scrollbar-width:none}
-.ptabs a{flex:none;position:relative;padding:13px 12px;font-weight:600;font-size:14.5px;color:var(--mute);text-decoration:none}
-.ptabs a:hover{color:var(--ink);background:var(--tint)}
-.ptabs a:first-child{color:var(--ink)}
-.ptabs a:first-child::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--blue)}
+.ptabs{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ptabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.ptabs .wrap::-webkit-scrollbar{display:none}
+.ptabs a{flex:none;position:relative;padding:14px 12px;font-weight:600;font-size:15px;color:var(--mute);text-decoration:none;transition:color .12s}
+.ptabs .wrap a:first-child{margin-left:-12px}
+.ptabs a:hover{color:var(--ink)}
+.ptabs a.on{color:var(--ink)}
+.ptabs a::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:3px;border-radius:3px 3px 0 0;background:var(--blue);transform:scaleX(0);transition:transform .25s var(--ease)}
+.ptabs a.on::after{transform:none}
+.totop{position:fixed;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,32px);z-index:40;width:48px;height:48px;border-radius:50%;border:1px solid #cfd3d8;background:#fff;color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 22px -10px rgba(0,0,0,.35);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s var(--ease),background .12s,color .12s,border-color .12s}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.totop:active{transform:scale(.94)}
+.totop svg{width:20px;height:20px}
 
 .sec-title{display:flex;align-items:center;gap:20px;margin-bottom:8px}
 .sec-title::after{content:"";flex:1;height:1px;background:var(--line)}
@@ -278,10 +283,10 @@ tbody tr td:first-child{box-shadow:inset 0 0 0 var(--signal);transition:box-shad
 tbody tr:hover td:first-child{box-shadow:inset 3px 0 0 var(--signal);padding-left:12px}
 td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 td .o{display:block;color:var(--mute);font-size:14px}
-.win{color:var(--signal);font-weight:700}
+.win{color:var(--ink);font-weight:700}
 .bar{display:block;height:3px;background:var(--line);border-radius:3px;margin-top:8px;overflow:hidden;width:90px;margin-left:auto}
 .bar i{display:block;height:100%;background:var(--ink);width:0;transition:width 1.1s var(--ease)}
-.win .bar i{background:var(--signal)}
+.win .bar i{background:var(--green)}
 
 #more{padding:clamp(40px,5vw,64px) 0}
 .two{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px 72px}
@@ -290,6 +295,8 @@ td .o{display:block;color:var(--mute);font-size:14px}
 .list li{padding:13px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px}
 .list b{font-weight:600}
 .list .s{grid-column:1;color:var(--mute);font-size:15.5px}
+.list .s a{color:inherit}
+.list .s a:hover{color:var(--blue)}
 .list .when{grid-row:1;grid-column:2}
 #skills{padding:0 0 clamp(40px,5vw,64px)}
 #skills h2{font-size:24px;margin:0 0 4px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
@@ -308,6 +315,10 @@ td .o{display:block;color:var(--mute);font-size:14px}
 .mail a{display:inline-flex;align-items:center;gap:10px;font-size:clamp(18px,2.2vw,23px);font-weight:600;text-decoration:none;border-bottom:2px solid var(--ink);word-break:break-all}
 .mail a:hover{color:var(--blue);border-color:var(--blue)}
 .mail a svg{width:22px;height:22px;flex:none}
+.mail .msg{width:52px;height:52px;border:1px solid #cfd3d8;border-radius:50%;background:#fff;justify-content:center;gap:0;transition:background .12s,color .12s,border-color .12s,transform .12s var(--ease)}
+.mail .msg:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mail .msg:active{transform:scale(.94)}
+.mail .msg .logo{width:26px;height:26px}
 .copy{min-height:40px;padding:0 14px;border-radius:8px;border:1px solid #c9ccd1;background:#fff;color:var(--ink);font:500 14px var(--sans);cursor:pointer;transition:border-color .12s,background .12s}
 .copy:hover{border-color:var(--ink)}
 .copy.done{background:var(--green);border-color:var(--green);color:#fff}
@@ -332,7 +343,6 @@ footer a:hover{color:var(--ink)}
 }
 @media(max-width:600px){
   body{font-size:16px}
-  header nav a:not(:last-child){display:none}
   .avatar{width:64px;height:64px;font-size:22px}
   .acts{width:100%}
   .facts li{grid-template-columns:6.5em minmax(0,1fr)}
@@ -374,14 +384,15 @@ footer a:hover{color:var(--ink)}
               <a class="pbtn pri" href="assets/Sabbir_Ahmed_Fahim.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>CV</a>
             </div>
           </div>
-          <p class="bio">CSE <a href="https://lus.ac.bd/" target="_blank" rel="noopener">@LU</a> <span class="sep">|</span> Undergraduate RA <a href="https://deepnetlab.com/" target="_blank" rel="noopener">@DeepNet Lab</a> <span class="sep">|</span> Competitive Programmer</p>
+          <p class="bio">CSE <a href="https://lus.ac.bd/" target="_blank" rel="noopener">@LU</a> <span class="sep">|</span> Undergraduate RA <a href="https://deepnetlab.com/" target="_blank" rel="noopener">@DeepNet Lab</a> <span class="sep">|</span> Contest Coordinator and Problemsetter <a href="https://serious-oj.com/" target="_blank" rel="noopener">@SeriousOJ</a></p>
         </div>
-        <nav class="ptabs" aria-label="Profile sections">
-          <a href="#projects">Projects</a><a href="#research">Research</a><a href="#cp">Contests</a><a href="#more">Activities</a><a href="#contact">Contact</a>
-        </nav>
       </div>
     </div>
   </section>
+
+  <nav class="ptabs" id="ptabs" aria-label="Sections">
+    <div class="wrap"><a href="#projects">Projects</a><a href="#research">Research</a><a href="#cp">Contests</a><a href="#more">Activities</a><a href="#contact">Contact</a></div>
+  </nav>
 
   <section id="projects">
     <div class="wrap">
@@ -509,7 +520,7 @@ footer a:hover{color:var(--ink)}
         <ul class="list">
           <li><b>Problem Setter</b><span class="s">LUCC and IEEE Computer Society programming contests</span><span class="when">2026 – now</span></li>
           <li><b>ACM Program Coordinator Lead</b><span class="s">Leading University Computer Club</span><span class="when">Jul 2026 – now</span></li>
-          <li><b>Programming Mentor</b><span class="s">Leading University ACM Community</span><span class="when">Dec 2025 – now</span></li>
+          <li><b>Programming Mentor</b><span class="s"><a href="https://www.facebook.com/p/LU-ACM-Community-61572507621970/" target="_blank" rel="noopener">Leading University ACM Community</a></span><span class="when">Dec 2025 – now</span></li>
         </ul>
       </div>
       <div>
@@ -539,15 +550,14 @@ footer a:hover{color:var(--ink)}
       </div>
     </div>
   </section>
-</main>
 
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="grid">
       <div>
         <h2>Contact</h2>
-        <p>Send me an email.</p>
-        <div class="mail"><a href="mailto:dev.sabbirfahim@gmail.com"><img class="logo" src="assets/logo/gmail.png" alt="" onload="var n=this.nextElementSibling;if(n)n.remove()" onerror="this.remove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg>dev.sabbirfahim@gmail.com</a><button class="copy" id="copy" type="button">Copy</button></div>
+        <p>Feel free to reach out.</p>
+        <div class="mail"><a class="msg" href="https://wa.me/sabbirahmedfahim" target="_blank" rel="noopener" aria-label="Send a message" title="Send a message"><img class="logo" src="assets/logo/whatsapp.png" alt="" onload="var n=this.nextElementSibling;if(n)n.remove()" onerror="this.remove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/><path d="M8.5 10.5c.3 2.3 2.7 4.7 5 5l1.4-1.4-1.9-1-1 .8a4.6 4.6 0 0 1-1.9-1.9l.8-1-1-1.9z"/></svg></a></div>
       </div>
       <ul class="out">
         <li><a href="https://github.com/sabbirahmedfahim" target="_blank" rel="noopener" aria-label="GitHub: sabbirahmedfahim"><span class="nm"><img class="logo" src="assets/logo/github.png" alt="" onload="var n=this.nextElementSibling;if(n)n.remove()" onerror="this.remove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2.2"/><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="9" r="2.2"/><path d="M6 7.2v9.6M18 11.2c0 3.5-5 3-10.5 5.8"/></svg></span><span class="un">sabbirahmedfahim</span></a></li>
@@ -560,6 +570,11 @@ footer a:hover{color:var(--ink)}
     <footer><span>© <span id="yr">2026</span> Sabbir Ahmed Fahim</span><a href="#top">Back to top</a></footer>
   </div>
 </section>
+</main>
+
+<button class="totop" id="totop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+
 
 <script>
 {
@@ -1164,11 +1179,11 @@ const loop = (el, cycle) => { visible.set(el, {on: false, wake: null}); io.obser
 
 {
   const contests = [
-    {name:'Intra LU Programming Contest 2026', org:'Leading University Computer Club', team:'Individual', res:'Champion', pct:1, win:true, url:'https://serious-oj.com/contest/69edc9135f6eb47f01fd8ae2/scoreboard'},
+    {name:'Intra LU Programming Contest 2026', org:'Leading University Computer Club', team:'Individual', res:'Champion', pct:1, win:true, url:'https://serious-oj.com/contests/69edc9135f6eb47f01fd8ae2/scoreboard'},
     {name:'NSU IUPC 2026', org:'North South University', team:'LU_initial_commit', res:'36th / 159', pct:1-35/159, url:'https://bapsoj.org/contests/nsucec-cybernauts-iupc-2026/standings'},
-    {name:'SUST IUPC 2026', org:'Shahjalal University of Science and Technology', team:'LU_Tryy', res:'99th / 130', pct:1-98/130},
+    {name:'SUST IUPC 2026', org:'Shahjalal University of Science and Technology', team:'LU_Tryy', res:'99th / 130', pct:1-98/130, url:'https://toph.co/c/sust-inter-university-2026/standings'},
     {name:'MU Inter University Programming Contest 2025', org:'Metropolitan University', team:'LU_Finix', res:'Participated', url:'https://toph.co/c/inter-university-mu-cse-fest-2025/standings'},
-    {name:'LU IUJPC: Sylhet Division 2024', org:'Leading University', team:'LU_Dynamic_Programmers', res:'20th / 35', pct:1-19/35, url:'https://serious-oj.com/contest/67559b35a9f1c7000843e73f/scoreboard'}
+    {name:'LU IUJPC: Sylhet Division 2024', org:'Leading University', team:'LU_Dynamic_Programmers', res:'20th / 35', pct:1-19/35, url:'https://serious-oj.com/contests/67559b35a9f1c7000843e73f/scoreboard'}
   ];
   $('contests').innerHTML = contests.map(c => `
     <tr>
@@ -1186,13 +1201,22 @@ const loop = (el, cycle) => { visible.set(el, {on: false, wake: null}); io.obser
 }
 
 {
-  const cp = $('copy');
-  cp.addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText('dev.sabbirfahim@gmail.com'); cp.textContent = 'Copied'; cp.classList.add('done'); }
-    catch (_) { cp.textContent = 'Select and copy'; }
-    setTimeout(() => { cp.textContent = 'Copy'; cp.classList.remove('done'); }, 1600);
-  });
   $('yr').textContent = new Date().getFullYear();
+  const top = $('totop');
+  const links = [...document.querySelectorAll('#ptabs a')];
+  const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  let tk = false;
+  const onScroll = () => {
+    tk = false;
+    top.classList.toggle('show', scrollY > innerHeight * .8);
+    let cur = -1; const y = innerHeight * .3;
+    secs.forEach((el, i) => { if (el && el.getBoundingClientRect().top < y) cur = i; });
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = secs.length - 1;
+    links.forEach((a, i) => a.classList.toggle('on', i === cur));
+  };
+  addEventListener('scroll', () => { if (!tk) { tk = true; requestAnimationFrame(onScroll); } }, {passive: true});
+  onScroll();
+  top.addEventListener('click', () => scrollTo({top: 0, behavior: reduce ? 'auto' : 'smooth'}));
 }
 
 }
